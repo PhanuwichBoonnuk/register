@@ -1,0 +1,442 @@
+{
+  "page": {
+    "my-locker": {
+      "title": "My Locker",
+      "description": ""
+    },
+    "transaction": {
+      "title": "Transaction",
+      "description": ""
+    },
+    "manage-locker": {
+      "title": "Manage Locker",
+      "description": "",
+      "unlocked": "Locker are unlocked.",
+      "create": {
+        "title": "Create Locker",
+        "description": "Create a new locker, please complete the information and location."
+      },
+      "update": {
+        "title": "Update Locker",
+        "description": "Update a new locker, please complete the information and location."
+      },
+      "set-type": {
+        "title": "Update Locker Type",
+        "description": "Set type of selected lockers."
+      }
+    },
+    "manage-locker-group": {
+      "title": "Manage Locker Group",
+      "description": "",
+      "create": {
+        "title": "Create Locker Group",
+        "description": "Create a new locker group, please complete the information."
+      },
+      "update": {
+        "title": "Update Locker Group",
+        "description": "Update a new locker group, please complete the information."
+      },
+      "add-locker": {
+        "title": "Add Locker",
+        "description": "Add a locker to locker group, please complete the information.",
+        "warning": "Changing zone will lost selected locker completely."
+      },
+      "set-open-time": {
+        "title": "Set auto unlock time",
+        "description": "set auto unlock time for all locker in the group, please complete the information."
+      }
+    },
+    "manage-user": {
+      "title": "Manage User",
+      "description": "",
+      "create": {
+        "title": "Create User",
+        "description": "Create a new user, please complete the information."
+      },
+      "update": {
+        "title": "Update User",
+        "description": "Update a new user, please complete the information."
+      },
+      "detail": {
+        "title": "User Detail",
+        "description": "User detail."
+      }
+    },
+    "manage-user-group": {
+      "title": "Manage User Group",
+      "description": "",
+      "create": {
+        "title": "Create User Group",
+        "description": "Create a new user group, please complete the information."
+      },
+      "update": {
+        "title": "Update User Group",
+        "description": "Update a new user group, please complete the information."
+      },
+      "add-locker-group": {
+        "title": "Add Locker Group Access",
+        "description": "Add locker group to user group"
+      }
+    },
+    "manage-panel": {
+      "title": "Manage Panel",
+      "description": "",
+      "create": {
+        "title": "Create Panel",
+        "description": "Create a new panel, please complete the information."
+      },
+      "update": {
+        "title": "Update Panel",
+        "description": "Update a new panel, please complete the information."
+      },
+      "default-setting": {
+        "title": "Default Setting",
+        "description": "Setting default value for panel, please complete the information."
+      },
+      "panel-setting": {
+        "title": "{name} Setting",
+        "description": "Setting panel value, please complete the information."
+      }
+    },
+    "locker-report": {
+      "title": "Locker Report",
+      "description": ""
+    },
+    "people-report": {
+      "title": "People Report",
+      "description": ""
+    },
+    "server-setting": {
+      "title": "Server Setting",
+      "description": ""
+    },
+    "manage-card": {
+      "title": "Manage Cards",
+      "description": "",
+      "create": {
+        "title": "Add Card",
+        "description": ""
+      },
+      "update": {
+        "title": "Update Card",
+        "description": ""
+      }
+    },
+    "manage-ban": {
+      "title": "Banned Users",
+      "description": "",
+      "ban": {
+        "title": "Ban User",
+        "description": ""
+      }
+    }
+  },
+  "login": {
+    "username": "Username",
+    "password": "Password",
+    "please-sign-in": "Please sign-in to your account"
+  },
+  "locker": {
+    "title": "Locker",
+    "plural": "{count} {count, plural, =0{Locker} =1{Locker} other{Lockers}}",
+    "number": "Locker No.",
+    "name": "Locker Name",
+    "open": "Open",
+    "open-cancel": "Cancel Open",
+    "open-in": "Open locker in {time}",
+    "unlock": "Unlock Locker",
+    "return": "Return",
+    "force-return": "Force Return",
+    "create": "Create Locker",
+    "update": "Update Locker",
+    "delete": "Delete Locker",
+    "add": "Add Locker",
+    "select-all": "Select All Locker",
+    "set-type": "Set Type",
+    "status": {
+      "title": "Status",
+      "available": "Available",
+      "in-use": "In Use",
+      "disabled": "Disabled"
+    },
+    "door-status": "Door Status",
+    "type": {
+      "title": "Type",
+      "select": "Select Type",
+      "personal": "Private Locker",
+      "share": "Public Locker",
+      "hotseat-auto-assign": "Hotseat Assigned Locker"
+    },
+    "owner": "Owner",
+    "current-use": "Current Use",
+    "no-locker": "No locker",
+    "limit": "Locker Limit Per Person",
+    "group": {
+      "title": "Locker Group",
+      "create": "Create Group",
+      "update": "Update Group",
+      "delete": "Delete Group",
+      "add": "Add Locker Group",
+      "set": "Set Locker Group",
+      "set-open-time": "Set auto unlock time",
+      "name": "Group Name",
+      "auto-assign": "Auto Assign",
+      "allow-guest": "Allow Guest",
+      "guest": "Guest",
+      "count": "Locker Count",
+      "access": "Locker Group Access",
+      "set-auto-release": "Set auto release"
+    }
+  },
+  "user": {
+    "title": "User",
+    "plural": "{count} {count, plural, =0{User} =1{User} other{Users}}",
+    "create": "Create User",
+    "update": "Update User",
+    "updated": "User Updated",
+    "delete": "Delete User",
+    "add": "Add User",
+    "set": "Set User",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "initial": "Username",
+    "password": "Password",
+    "confirm-password": "Confirm Password",
+    "section": "Section",
+    "division": "Division",
+    "count": "User Count",
+    "group": {
+      "title": "User Group",
+      "create": "Create Group",
+      "update": "Update Group",
+      "delete": "Delete Group",
+      "name": "Group Name"
+    },
+    "qr": {
+      "title": "My QR Code",
+      "expire": "QR Code will expire in",
+      "warning": {
+        "private": "This QR code is private to the user.",
+        "do-not-send": "Please do not send it to others."
+      }
+    },
+    "download-template": "Download Template",
+    "import-csv": "Import User"
+  },
+  "card": {
+    "title": "Card",
+    "name": "Card Name",
+    "id": "Card ID",
+    "create": "Add Card",
+    "update": "Update Card",
+    "updated": "Card Updated",
+    "delete": "Delete Card",
+    "download-template": "Download Template",
+    "import-csv": "Import Card"
+  },
+  "panel": {
+    "title": "Panel",
+    "plural": "{count} {count, plural, =0{Panel} =1{Panel} other{Panels}}",
+    "create": "Create Panel",
+    "update": "Update Panel",
+    "delete": "Delete Panel",
+    "setting": "Panel Setting",
+    "default-setting": "Default Setting",
+    "select": "Select Panel",
+    "name": "Panel Name",
+    "id": "Panel ID",
+    "client-version": "Client Version",
+    "last-seen": "Last Online"
+  },
+  "location": {
+    "title": "Location",
+    "building": {
+      "title": "Building",
+      "select": "Select Building",
+      "add": "Add Building",
+      "all": "All Building"
+    },
+    "floor": {
+      "title": "Floor",
+      "select": "Select Floor",
+      "add": "Add Floor",
+      "all": "All Floor"
+    },
+    "zone": {
+      "title": "Zone",
+      "select": "Select Zone",
+      "add": "Add Zone",
+      "all": "All Zone"
+    },
+    "group": {
+      "title": "Group",
+      "select": "Select Group",
+      "add": "Add Group",
+      "all": "All Group"
+    }
+  },
+  "send-email-to-admin": {
+    "title": "Send notification email",
+    "subtitle": "(separate with \",\")",
+    "errors": {
+      "email-is-not-valid": "Some Email is invalid"
+    },
+    "modals": {
+      "updated": "Send notification email is updated"
+    }
+  },
+  "general": {
+    "no-data": "No Data",
+    "filter": "Filter",
+    "change-password": "Change Password",
+    "reset-to-default": "Reset to Default",
+    "layout": "Layout",
+    "goto-manage-user-group": "Go to Manage User Group",
+    "logo": "Logo",
+    "background": "Background",
+    "default-language": "Default Language",
+    "welcome-message": "Welcome Message",
+    "forgot-pin-message": "Forgot Pin Message",
+    "company": "Company Name",
+    "qr-code": "QR Code",
+    "rfid-card": "RFID Card",
+    "face-scan": "Face Scan",
+    "action": "Action",
+    "channel": "Channel",
+    "admin": "Admin",
+    "cookie-consent": {
+      "title": "We Use Cookie",
+      "description": "This website uses cookies for a better functionality for you. When accessing the website You can find out more about the types of cookies that are stored. Purpose of using cookies And how to set cookies from <a href='' target='_blank' class='cookie_consent--title'><u>Our cookie policy</u></a>"
+    },
+    "privacy-preference": "Privacy Preference",
+    "cookie-necessary": {
+      "title": "Necessary",
+      "description": "Allows logging into the website to perform basic functions. Correctly and safely"
+    },
+    "cookie-non-necessary": {
+      "title": "Non-Necessary",
+      "description": "This is a cookie for recording function changes. Use of the website such as setting the language used To facilitate You don't have to make a new selection every time."
+    },
+    "always-active": "Always Active",
+    "consent": {
+      "title": "Consent",
+      "sub-title": "คำยินยอมขอใช้ข้อมูลส่วนบุคคล",
+      "footer": "ข้อมูลเพิ่มเติม <a href='' class='text-secondary' target='_blank'><u>Privacy Policy</u></a>",
+      "first": {
+        "title": "ยินยอมเพื่อให้บริการใช้งานการจองได้อย่างถูกต้องและมีประสิทธิภาพและฟังก์ชั่นการทำงานเป็นไปได้ด้วยความถูกต้อง",
+        "description": "<ul><li>ข้อมูลการจองใช้ห้องประชุมของคุณจะถูกส่งไปยังผู้ดูแลเกี่ยวข้องในกรณีที่การใช้งานนั้นไม่สอดคล้องกับ นโยบายการใช้ทรัพยากรของบริษัทของคุณ</li><li>นำเสนอข้อมูลให้กับคุณในเว็บ ให้คุณเข้าใจข้อมูลการจองได้ง่าย</li><li>ข้อมูลชื่อของคุณ แสดงอยู่บนหน้าจอภายในสำนักงาน เพื่อแสดงรายการการจองใช้ หรือการจะเข้าใช้ ทรัพยากรนั้นๆ</li><li>ข้อมูลภาพถ่าย และชื่อนามสกุล ให้กับแขกที่คุณเชิญมาที่สำนักงานของคุณ เพื่อประสบการณ์ที่ดีในในการ มาเยี่ยมของ visitor</li></ul>"
+      },
+      "second": {
+        "title": "ยินยอมให้ข้อมูลเพื่อการวิเคราะห์",
+        "description": "<ul><li>ข้อมูลการจองใช้ห้องประชุมของคุณจะถูกส่งไปยังผู้ดูแลเกี่ยวข้องในกรณีที่การใช้งานนั้นไม่สอดคล้องกับ นโยบายการใช้ทรัพยากรของบริษัทของคุณ</li><li>นำเสนอข้อมูลให้กับคุณในเว็บ ให้คุณเข้าใจข้อมูลการจองได้ง่าย</li></ul>"
+      }
+    },
+    "privacy-policy": {
+      "name": "Privacy Policy",
+      "title": "นโยบายคุ้มครองข้อมูลส่วนบุคคล<br /> ระบบซอฟต์แวร์สำนักงานอัจฉริยะเวิร์คเพลสพลัส",
+      "description": "บริษัท เอ็กซ์ซี จำกัด (\"บริษัท\") เป็นผู้พัฒนาและเจ้าของ ระบบซอฟต์แวร์สำนักงานอัจฉริยะเวิร์คเพลสพลัส ซึ่งประกอบด้วยระบบซอฟต์แวร์ย่อยดังนี้คือ <ul><li>ระบบบริหารจัดการห้องประชุม</li><li>ระบบบริหารจัดการโต๊ะทำงานส่วนกลาง</li><li>ระบบบริหารจัดการตู้เก็บของ</li><li>ระบบบริหารจัดการผู้มาติดต่อบริษัท</li></ul>ซึ่งถือเป็นบริการ หนึ่งของบริษัท (\"บริการ\") <br><br>เมื่อบริษัทของท่านสมัครบัญชีใช้งานให้กับท่าน จะถือว่าท่านได้อนุญาตให้กับบริษัทของท่านสมัครเข้ามาเป็น ผู้ใช้บริการ และในการให้บริการแก่ท่าน บริษัทมีความ จำเป็นต้องประมวลผลข้อมูลส่วนบุคคลของผู้ใช้บริการ ดังนั้น บริษัทจึงมีจุดประสงค์ประกาศนโยบาย คุ้มครองข้อมูลส่วนบุคคลฉบับนี้ขึ้น เพื่อแจ้ง เกี่ยวกับ สิทธิและ หน้าที่ รวมถึงเงื่อนไขต่างๆ อันเกี่ยว เนื่องกับการเก็บ รวบรวม ใช้ และเปิดเผยข้อมูล ส่วนบุคคลที่บริษัท จะดำ เนินการให้ผู้ใช้บริการ ในฐานะผู้ใช้บริการรับทราบ นโยบายความเป็นส่วนตัวฉบับนี้ มีผลใช้บังคับกับการให้บริการของบริษัทเท่านั้น ไม่มีผลใช้บังคับ กับ แอปพลิเคชั่นและบริการหรือเว็บไซต์อื่นๆ ที่อาจมีการเชื่อมต่อ (integration) ซึ่งเป็นของบุคคลภายนอก ที่บริษัทไม่มี อำนาจ ควบคุม และเป็นส่วนที่ผู้ใช้บริการต้องทำความตกลง และศึกษาเกี่ยวกับนโยบายข้อมูลส่วน บุคคล สำหรับ การใช้แอปพลิเคชั่น บริการ หรือเว็บไซต์ดังกล่าวแยกต่างหาก"
+    },
+    "term-of-service": {
+      "title": "Term of Service",
+      "subtitle": "ข้อกำหนดและเงื่อนไขการให้บริการ",
+      "description": "<span class=\"text-primary font-weight-600\">Term of service ข้อกำหนดและเงื่อนไขการให้บริการ</span><br/>ข้อกำหนดและเงื่อนไขการให้บริการ จัดทำขึ้นระหว่างบริษัท เอ็กซ์ซี จำกัด และอีกฝ่ายหนึ่งคือผู้ใช้บริการ คือ ผู้ที่สังกัดอยู่ในบริษัทที่เป็นคู่สัญญาการให้บริการระบบซอฟต์แวร์ของเอ็กซ์ซีจำกัด ระบบซอฟต์แวร์นี้ให้บริการ การบริหารจัดการ และการจองทรัพยากรที่เกี่ยวข้องกับอาคาร คือ <ul><li>ระบบบริหารจัดการห้องประชุม</li><li>ระบบบริหารจัดการโต๊ะทำงานส่วนกลาง</li><li>ระบบบริหารจัดการตู้ล็อกเกอร์</li><li>ระบบบริหารจัดการผู้มาติดต่อ</li></ul>เพื่อให้ผู้ใช้บริการ สามารถเข้าใช้ทรัพยากรต่างๆของบริษัทของผู้ใช้บริการได้ตามนโยบายการใช้งานขอบบริษัทนั้น เช่น การจองใช้ห้องประชุม การจองโต๊ะสำหรับทำงาน การเข้าใช้งานล็อกเกอร์ รวมถึงการเชิญบุคคลภายนอกเข้ามาในตัวอาคาร <br /><br />ระบบซอฟต์แวร์ หมายถึง ระบบซอฟต์แวร์ที่เกี่ยวข้องกับสำนักงานอัจฉริยะที่ผลิตและจำหน่ายโดยบริษัทเอ็กซ์ซีจำกัด ตามที่ได้แจ้งไว้ข้างต้น โดยรวมทั้งส่วนที่เป็น on premise หรือ on cloud โดยประกอบด้วยฟังก์ชั่นการทำงานตามรายการดังต่อไปนี้ <br />1 &nbsp;&nbsp; ฟังก์ชั่นมาตรฐานของซอฟต์แวร์ กำหนดอยู่ในคู่มือการใช้งานของซอฟต์แวร์ และ เอกสารประกอบการขายของพนักงานขาย <br />2 &nbsp;&nbsp; ฟังก์ชั่นที่ทำเพิ่มเฉพาะ ของลูกค้าแต่ละราย จะกำหนดอยู่ใน SOW หาก SOW มีกำหนดการปรับเปลี่ยนฟังก์ชั่นมาตรฐานให้เป็นไปตามความต้องการของลูกค้า ให้ถือฟังก์ชั่นดังกล่าวเป็นส่วนที่ทำเพิ่ม เพื่อให้สามารถกำหนดนโยบายการใช้งานได้ตรงตามความต้องการของผู้บริหารจัดการอาคารขององค์กรนั้นๆ"
+    },
+    "personal-information": {
+      "title": "Personal Information management",
+      "subtitle": "นโยบายความเป็นส่วนตัว"
+    },
+    "mylocker-show-expire":{
+        "title":"locker will expire on",
+        "transaction":"expire date"
+    }
+  },
+  "time": {
+    "title": "Time",
+    "select": "Select Time",
+    "start": "Start Time",
+    "end": "End Time",
+    "created": "Created Time",
+    "to": "to",
+    "until": "Until",
+    "repeat": "Repeat",
+    "day": "Day(s)",
+    "hour": "Hour(s)",
+    "minute": "Minute(s)",
+    "started": "Started"
+  },
+  "date": {
+    "title": "Date",
+    "select": "Select Date",
+    "start": "Start Date",
+    "end": "End Date",
+    "created": "Created Date",
+    "today": "Today"
+  },
+  "month": {
+    "title": "Month",
+    "select": "Select Month",
+    "start": "Start Month",
+    "end": "End Month",
+    "created": "Created Month"
+  },
+  "year": {
+    "title": "Year",
+    "select": "Select Year",
+    "start": "Start Year",
+    "end": "End Year",
+    "created": "Created Year"
+  },
+  "action": {
+    "confirm": "Confirm",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "back": "Back",
+    "login": "Login",
+    "logout": "Logout",
+    "select": "Select",
+    "select-all": "Select All",
+    "remove-select": "Remove Select",
+    "edit": "Edit",
+    "add": "Add",
+    "detail": "Detail",
+    "update": "Update",
+    "save": "Save",
+    "import": "Import",
+    "export": "Export",
+    "create": "Create",
+    "yes": "Yes",
+    "no": "No",
+    "close": "Close",
+    "delete": "Delete",
+    "upload": "Upload",
+    "next": "Next",
+    "view": "View",
+    "view-layout": "View Layout",
+    "disable": "Disable",
+    "enable": "Enable",
+    "choose-file": "Choose File",
+    "reset": "Reset",
+    "ban": "Ban",
+    "lift": "Lift Ban",
+    "change-preference": "Change Preference",
+    "accept": "Accept",
+    "accept-all": "Accept All",
+    "decline": "Decline",
+    "request-change": "Request Change"
+  },
+  "modal": {
+    "success": "Success!",
+    "warning": "Warning!",
+    "fail": "Failed!",
+    "consent": {
+      "updated": {
+        "content": "Your Consent updated"
+      }
+    }
+  },
+ "tooltip": {
+    "autoRelease": "You can select a maximum duration of 1 month or 744 hours.",
+    "sendReminderEmail": "A reminder email will be sent before the scheduled release time."
+  }
+}

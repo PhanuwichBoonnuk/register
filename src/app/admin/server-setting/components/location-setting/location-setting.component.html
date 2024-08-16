@@ -1,0 +1,338 @@
+<div style="overflow: auto">
+  <div class="font-weight-600 text-black-primary mb-3" style="font-size: 24px">
+    {{ "location.title" | translate }}
+  </div>
+  <div style="overflow: auto" class="border rounded">
+    <div
+      class="row text-black-primary m-0"
+      style="height: 300px; min-width: 700px"
+      [formGroup]="selectedLocationForm"
+    >
+      <div class="col-4 p-0">
+        <div class="d-flex justify-content-between align-items-center p-3">
+          <span class="font-weight-600" style="padding: 0.75rem 0">{{
+            "location.building.title" | translate
+          }}</span>
+
+          <button
+  *ngIf="!addBuilding"
+  class="btn btn-primary d-flex justify-content-center align-items-center"
+  (click)="
+    addBuilding = true;
+    editBuilding = false;
+    addFloor = false;
+    editFloor = false;
+    addZone = false;
+    editZone = false;
+    buildingId.setValue('');
+    buildingName.setValue('');
+    floorId.setValue('');
+    floorName.setValue('');
+    zoneId.setValue('');
+    zoneName.setValue('');
+    floors = [];
+    zones = []
+  "
+>
+  <i class="bi bi-plus-circle-fill me-2"></i>{{ "action.add" | translate }}
+</button>
+        </div>
+        <div class="">
+          <div
+            *ngFor="let building of buildings"
+            class="location-item d-flex justify-content-between px-3 py-2"
+            [class.active]="buildingId.value === building.id"
+            (click)="selectBuilding(building)"
+          >
+            <span *ngIf="!editBuilding || buildingId.value !== building.id">
+              {{ building.name }}
+            </span>
+            <div
+              *ngIf="editBuilding && buildingId.value === building.id"
+              class="input-group"
+            >
+              <input
+                formControlName="buildingName"
+                type="text"
+                class="form-control"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  (click)="updateBuilding()"
+                >
+                  {{ "action.save" | translate }}
+                </button>
+                <button
+                  class="btn btn-danger"
+                  type="button"
+                  (click)="editBuilding = false"
+                >
+                  {{ "action.cancel" | translate }}
+                </button>
+              </div>
+            </div>
+
+            <div
+              *ngIf="!editBuilding && buildingId.value === building.id"
+              class="d-flex align-items-center text-primary text-nowrap ms-2"
+            >
+              <i
+                class="bi bi-pencil-square"
+                (click)="
+                  editBuilding = true;
+                  addBuilding = false;
+                  buildingName.setValue(building.name)
+                "
+              ></i>
+              <span class="mx-1"></span>
+              <i
+                class="bi bi-trash-fill"
+                (click)="deleteBuilding(building)"
+              ></i>
+            </div>
+          </div>
+          <div *ngIf="addBuilding && !editBuilding" class="px-3 py-2">
+            <div class="input-group">
+              <input
+                formControlName="buildingName"
+                type="text"
+                class="form-control"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  (click)="createBuilding()"
+                >
+                  {{ "action.save" | translate }}
+                </button>
+                <button
+                  class="btn btn-danger"
+                  type="button"
+                  (click)="addBuilding = false"
+                >
+                  {{ "action.cancel" | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4 p-0 border-left border-right">
+        <div class="d-flex justify-content-between align-items-center p-3">
+          <span class="font-weight-600" style="padding: 0.75rem 0">{{
+            "location.floor.title" | translate
+          }}</span>
+
+          <button
+            *ngIf="!addFloor && buildingId.value"
+            class="btn btn-primary"
+            (click)="
+              addBuilding = false;
+              editBuilding = false;
+              addFloor = true;
+              editFloor = false;
+              addZone = false;
+              editZone = false;
+              floorId.setValue('');
+              floorName.setValue('');
+              zoneId.setValue('');
+              zoneName.setValue('');
+              zones = []
+            "
+          >
+            <i class="bi bi-plus-circle-fill"></i>&nbsp;{{
+              "action.add" | translate
+            }}
+          </button>
+        </div>
+        <div class="">
+          <div
+            *ngFor="let floor of floors"
+            class="location-item d-flex justify-content-between px-3 py-2"
+            [class.active]="floorId.value === floor.id"
+            (click)="selectFloor(floor)"
+          >
+            <span *ngIf="!editFloor || floorId.value !== floor.id">
+              {{ floor.name }}
+            </span>
+            <div
+              *ngIf="editFloor && floorId.value === floor.id"
+              class="input-group"
+            >
+              <input
+                formControlName="floorName"
+                type="text"
+                class="form-control"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  (click)="updateFloor()"
+                >
+                  {{ "action.save" | translate }}
+                </button>
+                <button
+                  class="btn btn-danger"
+                  type="button"
+                  (click)="editFloor = false"
+                >
+                  {{ "action.cancel" | translate }}
+                </button>
+              </div>
+            </div>
+
+            <div
+              *ngIf="!editFloor && floorId.value === floor.id"
+              class="d-flex align-items-center text-primary text-nowrap ms-2"
+            >
+              <i
+                class="bi bi-pencil-square"
+                (click)="
+                  editFloor = true;
+                  addFloor = false;
+                  floorName.setValue(floor.name)
+                "
+              ></i>
+              <span class="mx-1"></span>
+              <i class="bi bi-trash-fill" (click)="deleteFloor(floor)"></i>
+            </div>
+          </div>
+          <div *ngIf="addFloor && !editFloor" class="px-3 py-2">
+            <div class="input-group">
+              <input
+                formControlName="floorName"
+                type="text"
+                class="form-control"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  (click)="createFloor()"
+                >
+                  {{ "action.save" | translate }}
+                </button>
+                <button
+                  class="btn btn-danger"
+                  type="button"
+                  (click)="addFloor = false"
+                >
+                  {{ "action.cancel" | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4 p-0">
+        <div class="d-flex justify-content-between align-items-center p-3">
+          <span class="font-weight-600" style="padding: 0.75rem 0">{{
+            "location.zone.title" | translate
+          }}</span>
+
+          <button
+            *ngIf="!addZone && floorId.value"
+            class="btn btn-primary"
+            (click)="
+              addBuilding = false;
+              editBuilding = false;
+              addFloor = false;
+              editFloor = false;
+              addZone = true;
+              editZone = false;
+              zoneId.setValue('');
+              zoneName.setValue('')
+            "
+          >
+            <i class="bi bi-plus-circle-fill"></i>&nbsp;{{
+              "action.add" | translate
+            }}
+          </button>
+        </div>
+        <div class="">
+          <div
+            *ngFor="let zone of zones"
+            class="location-item d-flex justify-content-between px-3 py-2"
+            [class.active]="zoneId.value === zone.id"
+            (click)="selectZone(zone)"
+          >
+            <span *ngIf="!editZone || zoneId.value !== zone.id">
+              {{ zone.name }}
+            </span>
+            <div
+              *ngIf="editZone && zoneId.value === zone.id"
+              class="input-group"
+            >
+              <input
+                formControlName="zoneName"
+                type="text"
+                class="form-control"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  (click)="updateZone()"
+                >
+                  {{ "action.save" | translate }}
+                </button>
+                <button
+                  class="btn btn-danger"
+                  type="button"
+                  (click)="editZone = false"
+                >
+                  {{ "action.cancel" | translate }}
+                </button>
+              </div>
+            </div>
+
+            <div
+              *ngIf="!editZone && zoneId.value === zone.id"
+              class="d-flex align-items-center text-primary text-nowrap ms-2"
+            >
+              <i
+                class="bi bi-pencil-square"
+                (click)="
+                  editZone = true; addZone = false; zoneName.setValue(zone.name)
+                "
+              ></i>
+              <span class="mx-1"></span>
+              <i class="bi bi-trash-fill" (click)="deleteZone(zone)"></i>
+            </div>
+          </div>
+          <div *ngIf="addZone && !editZone" class="px-3 py-2">
+            <div class="input-group">
+              <input
+                formControlName="zoneName"
+                type="text"
+                class="form-control"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  (click)="createZone()"
+                >
+                  {{ "action.save" | translate }}
+                </button>
+                <button
+                  class="btn btn-danger"
+                  type="button"
+                  (click)="addZone = false"
+                >
+                  {{ "action.cancel" | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

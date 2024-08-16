@@ -1,0 +1,253 @@
+<div class="modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 rounded-0 px-3 px-sm-5 py-4 py-sm-5">
+      <div class="text-end">
+        <i
+          class="bi bi-x pointer"
+          style="font-size: 32px; color: #a4afbf"
+          (click)="cancel()"
+        ></i>
+      </div>
+      <div class="mb-4">
+        <div *ngIf="type === 'create'" id="page-title">
+          {{ "page.manage-user.create.title" | translate }}
+        </div>
+        <div *ngIf="type === 'update'" id="page-title">
+          {{ "page.manage-user.update.title" | translate }}
+        </div>
+        <div *ngIf="type === 'detail'" id="page-title">
+          {{ "page.manage-user.detail.title" | translate }}
+        </div>
+        <div *ngIf="type === 'create'" id="page-description">
+          {{ "page.manage-user.create.description" | translate }}
+        </div>
+        <div *ngIf="type === 'update'" id="page-description">
+          {{ "page.manage-user.update.description" | translate }}
+        </div>
+        <div *ngIf="type === 'delete'" id="page-description">
+          {{ "page.manage-user.delete.description" | translate }}
+        </div>
+      </div>
+
+      <form [formGroup]="userForm" class="text-black-primary">
+        <div
+          class="position-relative text-center mx-auto mb-4"
+          style="height: 240px; width: 240px"
+        >
+          <img
+            [src]="imgUrl.value | imageUrl"
+            class="rounded-circle"
+            style="height: 240px; width: 240px; object-fit: cover"
+          />
+          <div style="position: absolute; bottom: 8%; right: 8%">
+            <app-image-upload
+              [type]="'profile'"
+              (success)="setProfileImage($event)"
+            ></app-image-upload>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "user.name" | translate
+          }}</label>
+          <div class="col-sm-8">
+            <input
+              *ngIf="type !== 'detail'"
+              formControlName="name"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="name?.touched && name?.errors"
+              [placeholder]="'user.name' | translate"
+            />
+            <div *ngIf="type === 'detail'" class="form-control border-0">
+              {{ name.value }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "user.email" | translate
+          }}</label>
+          <div class="col-sm-8">
+            <input
+              *ngIf="type !== 'detail'"
+              formControlName="email"
+              type="text"
+              inputmode="email"
+              class="form-control"
+              [class.is-invalid]="email?.touched && email?.errors"
+              [placeholder]="'user.email' | translate"
+            />
+            <div *ngIf="type === 'detail'" class="form-control border-0">
+              {{ email.value }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "user.initial" | translate
+          }}</label>
+          <div class="col-sm-8">
+            <input
+              *ngIf="type !== 'detail'"
+              formControlName="initial"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="initial?.touched && initial?.errors"
+              [placeholder]="'user.initial' | translate"
+            />
+            <div *ngIf="type === 'detail'" class="form-control border-0">
+              {{ initial.value }}
+            </div>
+          </div>
+        </div>
+        <div *ngIf="type === 'create'" class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "user.password" | translate
+          }}</label>
+          <div class="col-sm-8">
+            <input
+              formControlName="password"
+              type="password"
+              class="form-control"
+              [class.is-invalid]="password?.touched && password?.errors"
+              [placeholder]="'user.password' | translate"
+            />
+          </div>
+        </div>
+        <div *ngIf="type === 'create'" class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "user.confirm-password" | translate
+          }}</label>
+          <div class="col-sm-8">
+            <input
+              *ngIf="type === 'create'"
+              formControlName="confirmPassword"
+              type="password"
+              class="form-control"
+              [class.is-invalid]="
+                confirmPassword?.touched && confirmPassword?.errors
+              "
+              [placeholder]="'user.confirm-password' | translate"
+            />
+          </div>
+        </div>
+
+        <div *ngIf="type !== 'create'" class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "user.section" | translate
+          }}</label>
+          <div class="col-sm-8">
+            <input
+              *ngIf="type !== 'detail'"
+              formControlName="section"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="section?.touched && section?.errors"
+              [placeholder]="'user.section' | translate"
+            />
+            <div *ngIf="type === 'detail'" class="form-control border-0">
+              {{ section.value }}
+            </div>
+          </div>
+        </div>
+        <div *ngIf="type !== 'create'" class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "user.division" | translate
+          }}</label>
+          <div class="col-sm-8">
+            <input
+              *ngIf="type !== 'detail'"
+              formControlName="division"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="division?.touched && division?.errors"
+              [placeholder]="'user.division' | translate"
+            />
+            <div *ngIf="type === 'detail'" class="form-control border-0">
+              {{ division.value }}
+            </div>
+          </div>
+        </div>
+        <div *ngIf="type !== 'create'" class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "user.role" | translate
+          }}</label>
+          <div class="col-sm-8">
+            <select
+              formControlName="lockerRoles"
+              class="form-control"
+              [class.is-invalid]="lockerRoles?.touched && lockerRoles?.errors"
+            >
+              <option *ngFor="let role of roles" [value]="role.id">
+                {{ role.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div *ngIf="type !== 'create'" class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "user.group.title" | translate
+          }}</label>
+          <div class="col-sm-8 col-form-label">
+            <span
+              *ngFor="let userGroup of userGroups.value"
+              class="badge badge-primary font-weight-500 me-2 mb-2"
+              >{{ userGroup.name }}</span
+            >
+            <button
+              *ngIf="userGroups.value.length === 0"
+              class="btn btn-success text-white"
+              (click)="goToManageUserGroup()"
+            >
+              <i class="bi bi-plus-circle-fill"></i>&nbsp;{{
+                "general.goto-manage-user-group" | translate
+              }}
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <hr class="border-bottom-0 mb-4" />
+
+      <div class="d-flex justify-content-center">
+        <button
+          id="action-button"
+          class="btn btn-light text-primary w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="cancel()"
+        >
+          {{ "action.cancel" | translate }}
+        </button>
+        <div class="mx-2"></div>
+        <button
+          *ngIf="type === 'create'"
+          id="action-button"
+          class="btn btn-primary-gradient w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="create()"
+        >
+          {{ "action.save" | translate }}
+        </button>
+        <button
+          *ngIf="type === 'update'"
+          id="action-button"
+          class="btn btn-primary-gradient w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="update()"
+        >
+          {{ "action.update" | translate }}
+        </button>
+        <button
+          *ngIf="type === 'detail'"
+          id="action-button"
+          class="btn btn-primary-gradient w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="goToEdit()"
+        >
+          {{ "action.edit" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 rounded-0 px-3 px-sm-5 py-4 py-sm-5">
+      <div class="text-end">
+        <i
+          class="bi bi-x pointer"
+          style="font-size: 32px; color: #a4afbf"
+          (click)="cancel()"
+        ></i>
+      </div>
+      <div class="mb-4">
+        <div id="page-title">Ban User</div>
+        <div id="page-description">Ban User description</div>
+      </div>
+
+      <form [formGroup]="banForm" class="text-black-primary">
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">User</label>
+          <div class="col-sm-7">
+            <app-suggest-user-tag
+              [limit]="1"
+              (select)="selectUser($event)"
+            ></app-suggest-user-tag>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">Reason</label>
+          <div class="col-sm-7">
+            <textarea
+              formControlName="reason"
+              class="form-control"
+              [class.is-invalid]="reason?.touched && reason?.errors"
+              placeholder="Reason"
+              rows="5"
+            ></textarea>
+          </div>
+        </div>
+      </form>
+
+      <hr class="border-bottom-0 mb-4" />
+
+      <div class="d-flex justify-content-center">
+        <button
+          id="action-button"
+          class="btn btn-light text-primary w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="cancel()"
+        >
+          {{ "action.cancel" | translate }}
+        </button>
+        <div class="mx-2"></div>
+        <button
+          id="action-button"
+          class="btn btn-primary-gradient w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="ban()"
+        >
+          {{ "action.ban" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+.modal {
+    display: block !important;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    z-index: 10000;
+    overflow: auto;
+}
+
+.modal-dialog {
+    width: auto;
+    margin: 0 0 0 auto;
+}
+
+.modal-content {
+    min-height: 100vh;
+}
+
+.col-form-label {
+    // min-width: 180px;
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+* {
+    font-size: 16px;
+}
+
+/*  Small Size */
+@media (min-width: 576px) {
+    .modal-dialog {
+        min-width: 100%;
+    }
+}
+
+/* Medium Size */
+@media (min-width: 768px) {
+    .modal-dialog {
+        min-width: 100%;
+    }
+}
+
+/* Large Size */
+@media (min-width: 992px) {
+    .modal-dialog {
+        min-width: 700px;
+    }
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* ปรับตามความต้องการ */
+}
+
+.spinner-border {
+    width: 100rem;
+    height: 100rem;
+}

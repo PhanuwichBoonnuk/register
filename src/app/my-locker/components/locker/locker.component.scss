@@ -1,0 +1,65 @@
+@import "_variable";
+
+button {
+  min-width: auto;
+}
+
+#locker-title {
+  font-size: 14px;
+  color: $text-black-secondary;
+}
+
+#locker-name {
+  font-size: 42px;
+  color: $primary;
+}
+
+#locker-location {
+  font-size: 12px;
+  color: $text-black-secondary;
+}
+
+#locker-message {
+  font-size: 12px;
+  background: rgba(243, 85, 79, 0.1);
+}
+
+#locker-status {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* desktop size */
+@media (min-width: 992px) {
+  button {
+    min-width: 180px;
+  }
+
+  #locker-title {
+    font-size: 24px;
+  }
+
+  #locker-name {
+    font-size: 80px;
+  }
+
+  #locker-location {
+    font-size: 16px;
+  }
+
+  #locker-message {
+    font-size: 16px;
+  }
+
+  #locker-status {
+    font-size: 14px;
+  }
+}
+.custom-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem; 
+    border-radius: 0.25rem; 
+  }
+  

@@ -1,0 +1,63 @@
+/* Override Bootstrap Colors */
+$primary: #205080;
+$secondary: #00c4bb;
+$success: #66c5c5;
+$danger: #f3554f;
+$dark: #586782;
+$black: #131313;
+
+/* Colors */
+$primary-gradient-start: #00c4bb;
+$primary-gradient-end: #004081;
+$danger-gradient-start: #f3554f;
+$danger-gradient-end: #ae0600;
+$text-black-primary: #586782;
+$text-black-secondary: #818386;
+
+/* Font Path */
+$font-en-thin-path: "./assets/fonts/Poppins/Poppins-Thin.ttf";
+$font-en-extra-light-path: "./assets/fonts/Poppins/Poppins-ExtraLight.ttf";
+$font-en-light-path: "./assets/fonts/Poppins/Poppins-Light.ttf";
+$font-en-regular-path: "./assets/fonts/Poppins/Poppins-Regular.ttf";
+$font-en-medium-path: "./assets/fonts/Poppins/Poppins-Medium.ttf";
+$font-en-semi-bold-path: "./assets/fonts/Poppins/Poppins-SemiBold.ttf";
+$font-en-bold-path: "./assets/fonts/Poppins/Poppins-Bold.ttf";
+$font-en-extra-bold-path: "./assets/fonts/Poppins/Poppins-ExtraBold.ttf";
+$font-en-black-path: "./assets/fonts/Poppins/Poppins-Black.ttf";
+
+$font-th-thin-path: "./assets/fonts/Kanit/Kanit-Thin.ttf";
+$font-th-extra-light-path: "./assets/fonts/Kanit/Kanit-ExtraLight.ttf";
+$font-th-light-path: "./assets/fonts/Kanit/Kanit-Light.ttf";
+$font-th-regular-path: "./assets/fonts/Kanit/Kanit-Regular.ttf";
+$font-th-medium-path: "./assets/fonts/Kanit/Kanit-Medium.ttf";
+$font-th-semi-bold-path: "./assets/fonts/Kanit/Kanit-SemiBold.ttf";
+$font-th-bold-path: "./assets/fonts/Kanit/Kanit-Bold.ttf";
+$font-th-extra-bold-path: "./assets/fonts/Kanit/Kanit-ExtraBold.ttf";
+$font-th-black-path: "./assets/fonts/Kanit/Kanit-Black.ttf";
+
+/* Components */
+/* Login Page */
+$logo-login-max-height: 60px;
+
+/* Side Bar */
+$sidebar-background: #131313;
+$sidebar-color: #fff;
+$sidebar-item-background: $sidebar-background;
+$sidebar-item-background-hover: darken($sidebar-background, 10%);
+$sidebar-item-color: #fff;
+$sidebar-item-color-hover: #fff;
+
+/* Navigation Bar */
+$navigationbar-background: #fff;
+$navigationbar-color: #586782;
+$navigationbar-icon-background: transparent;
+$navigationbar-icon-color: #586782;
+
+$navigationbar-background-mobile: #131313;
+$navigationbar-color-mobile: #fff;
+$navigationbar-icon-background-mobile: transparent;
+$navigationbar-icon-color-mobile: #fff;
+
+/* Cookie Banner */
+$cookie-banner-background: rgba(#000000,0.8);
+$cookie-banner-color: #fff;

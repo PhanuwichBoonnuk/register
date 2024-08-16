@@ -1,0 +1,250 @@
+<div
+  class="d-flex flex-column p-3 p-lg-5"
+  style="
+    min-height: calc(100vh - 60px);
+    max-height: calc(100vh - 60px);
+    margin-top: 60px;
+  "
+>
+  <!-- header -->
+  <div class="d-block d-lg-flex justify-content-between">
+    <div class="mb-3 mb-lg-4">
+      <div id="page-title" class="mb-2">
+        {{ "page.locker-report.title" | translate }}
+      </div>
+      <div id="page-description">
+        {{ "page.locker-report.description" | translate }}
+      </div>
+    </div>
+
+    <div class="d-none d-lg-block mb-3 mb-lg-4">
+      <button
+        class="btn btn-primary-gradient"
+        style="min-width: 180px"
+        (click)="getLockerReport()"
+      >
+        Export
+      </button>
+    </div>
+  </div>
+
+  <!-- filter -->
+  <div class="d-flex d-lg-none text-black-secondary mb-2">
+    <div class="text-decoration-none" (click)="openFilter = !openFilter">
+      <i class="bi bi-filter-left me-1" style="font-size: 24px"></i>
+      <span class="font-weight-600">{{ "general.filter" | translate }}</span>
+    </div>
+    <div class="flex-grow-1"></div>
+    <div>
+      <i
+        class="bi bi-search me-2"
+        style="font-size: 20px"
+        (click)="openSearch = !openSearch"
+      ></i>
+      <i class="bi bi-save" style="font-size: 20px" (click)="export()"></i>
+    </div>
+  </div>
+  <form [formGroup]="filterForm" class="row text-black-primary">
+    <div
+      *ngIf="openFilter"
+      class="col-12 col-md-6 col-lg-6 col-xl-3 d-md-flex mb-3 mb-lg-4"
+    >
+      <div class="w-100">
+        <label class="font-size-12 mb-1">{{ "date.start" | translate }}</label>
+        <div class="input-group shadow-sm me-3 mb-2 mb-lg-0">
+          <input
+            formControlName="startTime"
+            type="text"
+            placeholder="Start Time"
+            class="form-control text-center bg-white pointer"
+            readonly
+            bsDatepicker
+            [bsConfig]="{
+              showWeekNumbers: false,
+              adaptivePosition: true,
+              dateInputFormat: 'DD/MM/YYYY'
+            }"
+            [maxDate]="today"
+          />
+        </div>
+      </div>
+      <div class="d-none d-md-flex flex-column">
+        <label class="font-size-12 mb-1">&nbsp;</label>
+        <div
+          class="flex-grow-1 d-flex flex-column justify-content-center mx-2 mb-2 mb-lg-0"
+        >
+          {{ "time.to" | translate }}
+        </div>
+      </div>
+      <div class="w-100">
+        <label class="font-size-12 mb-1">{{ "date.end" | translate }}</label>
+        <div class="input-group shadow-sm mb-2 mb-lg-0">
+          <input
+            formControlName="endTime"
+            type="text"
+            placeholder="End Time"
+            class="form-control text-center bg-white pointer"
+            readonly
+            bsDatepicker
+            [bsConfig]="{
+              showWeekNumbers: false,
+              adaptivePosition: true,
+              dateInputFormat: 'DD/MM/YYYY'
+            }"
+            [minDate]="startTime.value"
+            [maxDate]="today"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div
+      *ngIf="openFilter"
+      class="col-12 col-md-6 col-lg-6 col-xl-3 d-md-flex mb-3 mb-lg-4"
+    >
+      <div class="w-100 me-0 me-md-3">
+        <label class="font-size-12 mb-1">{{
+          "location.building.title" | translate
+        }}</label>
+        <div class="input-group shadow-sm me-3 mb-2 mb-lg-0">
+          <select
+            formControlName="buildingId"
+            class="form-control"
+            [class.is-invalid]="buildingId?.touched && buildingId?.errors"
+          >
+            <option value="">{{ "location.building.all" | translate }}</option>
+            <option *ngFor="let building of buildings" [value]="building.id">
+              {{ building.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="w-100">
+        <label class="font-size-12 mb-1">{{
+          "location.floor.title" | translate
+        }}</label>
+        <div class="input-group shadow-sm mb-2 mb-lg-0">
+          <select
+            formControlName="floorId"
+            class="form-control"
+            [class.is-invalid]="floorId?.touched && floorId?.errors"
+          >
+            <option value="">{{ "location.floor.all" | translate }}</option>
+            <option *ngFor="let floor of floors" [value]="floor.id">
+              {{ floor.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-xl-3 mb-3 mb-lg-4 d-none d-xl-block"></div>
+
+    <div *ngIf="openSearch" class="col-12 col-xl-3 mb-3 mb-lg-4">
+      <div class="w-100">
+        <label class="d-none d-lg-block font-size-12 mb-1">&nbsp;</label>
+        <div class="input-group shadow-sm">
+          <input
+            formControlName="searchText"
+            type="text"
+            class="form-control border-right-0"
+            placeholder="Search"
+          />
+          <div class="input-group-append border-left-0">
+            <span class="input-group-text bg-white" (click)="search()"
+              ><i class="bi bi-search"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- content -->
+  <div
+    class="flex-grow-1 d-flex position-relative shadow-md"
+    style="overflow: auto"
+  >
+    <!-- loading -->
+    <div
+      *ngIf="showLoading"
+      class="position-absolute w-100 h-100 flex-grow-1 d-flex justify-content-center align-items-center"
+      [@fadeIn]
+    >
+      <div class="spinner-border-lg text-primary">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <!-- no data -->
+    <div
+      *ngIf="!showLoading && reports.length === 0"
+      class="position-absolute w-100 h-100 flex-grow-1 d-flex justify-content-center align-items-center"
+      [@fadeIn]
+    >
+      <h3 class="text-black-primary">{{ "general.no-data" | translate }}</h3>
+    </div>
+    <!-- table -->
+    <div
+      *ngIf="reports.length > 0"
+      class="flex-grow-1"
+      style="overflow: auto"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      [scrollWindow]="false"
+      (scrolled)="onScroll()"
+      [@fadeIn]
+    >
+      <table class="table">
+        <thead>
+          <tr>
+            <th (click)="sort('lockerName')">
+              {{ "locker.name" | translate }}
+            </th>
+            <th (click)="sort('group')">
+              {{ "locker.group.name" | translate }}
+            </th>
+            <th (click)="sort('building')">
+              {{ "location.title" | translate }}
+            </th>
+            <th (click)="sort('type')">
+              {{ "locker.type.title" | translate }}
+            </th>
+            <th (click)="sort('ownerName')">{{ "user.name" | translate }}</th>
+            <th>Total Action</th>
+            <th>No Return</th>
+            <th>Locker Usage</th>
+            <th>Total Hour</th>
+            <th>Total Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of reports">
+            <td>{{ report.lockerName }}</td>
+            <td>{{ report.group }}</td>
+            <td>
+              {{ report.building }}, {{ report.floor }}, {{ report.zone }}
+            </td>
+            <td>
+              <span *ngIf="report.type === 'personal'">{{
+                "locker.type.personal" | translate
+              }}</span>
+              <span *ngIf="report.type === 'share'">{{
+                "locker.type.share" | translate
+              }}</span>
+              <span *ngIf="report.type === 'hotseat_auto_assign'">{{
+                "locker.type.hotseat-auto-assign" | translate
+              }}</span>
+            </td>
+            <td>{{ report.ownerName }}</td>
+            <td>{{ report.totalAction }}</td>
+            <td>{{ report.noReturn }}</td>
+            <td>{{ report.lockerUsage }}</td>
+            <td>{{ report.totalHour }}</td>
+            <td>{{ report.totalTime }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

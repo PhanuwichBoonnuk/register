@@ -1,0 +1,67 @@
+<div class="modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 rounded-0 p-3 p-lg-4">
+      <div class="border-0 text-center">
+        <div class="mb-3">
+          <i
+            *ngIf="data.class === 'success'"
+            class="bi bi-check-circle text-success"
+            style="font-size: 70px; line-height: 70px"
+          ></i>
+          <i
+            *ngIf="data.class === 'warning'"
+            class="bi bi-exclamation-circle text-warning"
+            style="font-size: 70px; line-height: 70px"
+          ></i>
+          <i
+            *ngIf="data.class === 'danger'"
+            class="bi bi-exclamation-circle text-danger"
+            style="font-size: 70px; line-height: 70px"
+          ></i>
+        </div>
+
+        <h5 class="modal-title mb-2">{{ data.header }}</h5>
+        <p class="mb-3" *ngIf="data?.content">
+          {{ data.content }}
+        </p>
+        <div class="error-list" *ngIf="data?.list?.length > 0">
+          <p *ngFor="let value of data.list" class="mb-1">{{ value }}</p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center border-0">
+        <!-- type: notification -->
+        <div *ngIf="data.type === 'notification'">
+          <button
+            type="button"
+            class="btn btn-primary-gradient shadow-sm"
+            style="min-width: 100px"
+            (click)="close()"
+          >
+            OK
+          </button>
+        </div>
+
+        <!-- type: confirm -->
+        <div *ngIf="data.type === 'confirm'">
+          <button
+            type="button"
+            class="btn btn-danger-gradient shadow-sm"
+            style="min-width: 100px"
+            (click)="confirm()"
+          >
+            Yes
+          </button>
+          <span class="mx-2"></span>
+          <button
+            type="button"
+            class="btn btn-white shadow-sm"
+            style="min-width: 100px"
+            (click)="close()"
+          >
+            No
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

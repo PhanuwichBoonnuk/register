@@ -1,0 +1,99 @@
+<div class="modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 rounded-0 px-3 px-sm-5 py-4 py-sm-5">
+      <div class="text-end">
+        <i
+          class="bi bi-x pointer"
+          style="font-size: 32px; color: #a4afbf"
+          (click)="cancel()"
+        ></i>
+      </div>
+      <div class="mb-4">
+        <div id="page-title">Set Auto Unlock Time</div>
+        <div id="page-description">
+          The locker will open the door at the set time.
+        </div>
+      </div>
+      <div *ngIf="!loading" class="d-flex justify-content-center align-items-center" style="height: 500px;">
+        <div class="spinner-border text-primary" role="status" style="width: 15rem; height: 15rem;">
+          
+        </div>
+      </div>
+      <form  *ngIf="loading" [formGroup]="timeForm" class="text-black-primary">
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">Set Auto</label>
+          <div class="col-sm-7">
+            <div class="col-form-label">
+              <input
+                type="checkbox"
+                class="pointer"
+                [class.disabled]="repeat.value === true"
+                [checked]="repeat.value === true"
+                (click)="repeat.setValue(true)"
+              />
+              On
+            </div>
+            <div class="col-form-label">
+              <input
+                type="checkbox"
+                class="pointer"
+                [class.disabled]="repeat.value === false"
+                [checked]="repeat.value === false"
+                (click)="repeat.setValue(false)"
+              />
+              Off
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">Time</label>
+          <div class="col-sm-7">
+            <timepicker
+              formControlName="repeatTime"
+              [showMeridian]="false"
+              [showSpinners]="false"
+            ></timepicker>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">Repeat</label>
+          <div class="col-sm-7">
+            <select
+              formControlName="repeatType"
+              class="form-control"
+              [class.is-invalid]="repeatType?.touched && repeatType?.errors"
+            >
+              <option value="null" disabled>Repeat</option>
+              <option value="Everyday">Every Day</option>
+              <option value="Workday">Work Day</option>
+              <option value="Never">Never</option>
+            </select>
+          </div>
+        </div>
+      </form>
+
+      <hr class="border-bottom-0 mb-4" />
+
+      <div class="d-flex justify-content-center">
+        <button
+          id="action-button"
+          class="btn btn-light text-primary w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="cancel()"
+        >
+          Cancel
+        </button>
+        <div class="mx-2"></div>
+        <button
+          id="action-button"
+          class="btn btn-primary-gradient w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="update()"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

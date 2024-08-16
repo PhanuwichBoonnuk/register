@@ -1,0 +1,13 @@
+{
+  "title": "Exzy - Locker Space",
+  "apiUrlData": "/data",
+  "apiUrl": "/data/lockers",
+  "imageUrl": "/data/lockers",
+  "GoogleLogin": "584006787954-24jgknarn64ovtn84ad82i2r5cqppbi9.apps.googleusercontent.com",
+  "logoutReturnUrl": "/",
+  "enableAutoAssign": true,
+  "enablePDPA": true,
+  "enablePersonalManagement": true,
+  "enableTermOfService": true,
+  "enableConsentAnalysis": true
+}

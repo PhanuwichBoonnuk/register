@@ -1,0 +1,232 @@
+<div class="modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 rounded-0 px-3 px-sm-5 py-4 py-sm-5">
+      <div class="text-end">
+        <i
+          class="bi bi-x pointer"
+          style="font-size: 32px; color: #a4afbf"
+          (click)="cancel()"
+        ></i>
+      </div>
+      <div class="mb-4">
+        <div *ngIf="!lockerId" id="page-title">
+          {{ "page.manage-locker.create.title" | translate }}
+        </div>
+        <div *ngIf="lockerId" id="page-title">
+          {{ "page.manage-locker.update.title" | translate }}
+        </div>
+        <div *ngIf="!lockerId" id="page-description">
+          {{ "page.manage-locker.create.description" | translate }}
+        </div>
+        <div *ngIf="lockerId" id="page-description">
+          {{ "page.manage-locker.update.description" | translate }}
+        </div>
+      </div>
+
+      <form [formGroup]="lockerForm" class="text-black-primary">
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "locker.name" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <input
+              formControlName="name"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="name?.touched && name?.errors"
+              [placeholder]="'locker.name' | translate"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">
+            {{ "location.building.title" | translate }}
+          </label>
+          <div class="col-sm-7">
+            <select
+              formControlName="buildingId"
+              class="form-control"
+              [class.is-invalid]="buildingId?.touched && buildingId?.errors"
+              [attr.disabled]="
+                (profile$ | async)?.lockerRoles.indexOf('0') > -1 ? null : true
+              "
+            >
+              <option value="" disabled>
+                {{ "location.building.select" | translate }}
+              </option>
+              <option *ngFor="let building of buildings" [value]="building.id">
+                {{ building.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">
+            {{ "location.floor.title" | translate }}
+          </label>
+          <div class="col-sm-7">
+            <select
+              formControlName="floorId"
+              class="form-control"
+              [class.is-invalid]="floorId?.touched && floorId?.errors"
+              [attr.disabled]="
+                (profile$ | async)?.lockerRoles.indexOf('0') > -1 ? null : true
+              "
+            >
+              <option value="" disabled>
+                {{ "location.floor.select" | translate }}
+              </option>
+              <option *ngFor="let floor of floors" [value]="floor.id">
+                {{ floor.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "location.zone.title" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <select
+              formControlName="zoneId"
+              class="form-control"
+              [class.is-invalid]="zoneId?.touched && zoneId?.errors"
+              [attr.disabled]="
+                (profile$ | async)?.lockerRoles.indexOf('0') > -1 ? null : true
+              "
+            >
+              <option value="" disabled>
+                {{ "location.zone.select" | translate }}
+              </option>
+              <option *ngFor="let zone of zones" [value]="zone.id">
+                {{ zone.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "location.group.title" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <select
+              formControlName="groupId"
+              class="form-control"
+              [class.is-invalid]="groupId?.touched && groupId?.errors"
+              [attr.disabled]="
+                (profile$ | async)?.lockerRoles.indexOf('0') > -1 ? null : true
+              "
+            >
+              <option value="" disabled>
+                {{ "location.group.select" | translate }}
+              </option>
+              <option *ngFor="let group of groups" [value]="group.id">
+                {{ group.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "locker.type.title" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <select
+              formControlName="type"
+              class="form-control"
+              [class.is-invalid]="type?.touched && type?.errors"
+            >
+              <option value="" disabled>
+                {{ "locker.type.select" | translate }}
+              </option>
+              <option value="personal">
+                {{ "locker.type.personal" | translate }}
+              </option>
+              <option value="share">
+                {{ "locker.type.share" | translate }}
+              </option>
+              <option *ngIf="enableAutoAssign" value="hotseat_auto_assign">
+                {{ "locker.type.hotseat-auto-assign" | translate }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "locker.owner" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <app-suggest-user-tag
+              [placeholder]="'locker.owner' | translate"
+              [disabled]="type.value !== 'personal'"
+              [users]="owners.value"
+              (select)="addSelectedUser($event)"
+            ></app-suggest-user-tag>
+          </div>
+        </div>
+        <ng-container *ngIf="(profile$ | async)?.lockerRoles.indexOf('0') > -1">
+          <div class="form-group mb-3 row">
+            <label class="col-sm-4 col-form-label">CU</label>
+            <div class="col-sm-7">
+              <input
+                formControlName="cu"
+                type="text"
+                inputmode="numeric"
+                digitOnly
+                class="form-control"
+                [class.is-invalid]="cu?.touched && cu?.errors"
+                placeholder="CU"
+              />
+            </div>
+          </div>
+          <div class="form-group mb-3 row">
+            <label class="col-sm-4 col-form-label">Relay</label>
+            <div class="col-sm-7">
+              <input
+                formControlName="relay"
+                type="type"
+                inputmode="numeric"
+                digitOnly
+                class="form-control"
+                [class.is-invalid]="relay?.touched && relay?.errors"
+                placeholder="Relay"
+              />
+            </div>
+          </div>
+        </ng-container>
+      </form>
+
+      <hr class="border-bottom-0 mb-4" />
+
+      <div class="d-flex justify-content-center">
+        <button
+          id="action-button"
+          class="btn btn-light text-primary w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="cancel()"
+        >
+          {{ "action.cancel" | translate }}
+        </button>
+        <div class="mx-2"></div>
+        <button
+          *ngIf="!lockerId"
+          id="action-button"
+          class="btn btn-primary-gradient w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="create()"
+        >
+          {{ "action.save" | translate }}
+        </button>
+        <button
+          *ngIf="lockerId"
+          id="action-button"
+          class="btn btn-primary-gradient w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="update()"
+        >
+          {{ "action.save" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

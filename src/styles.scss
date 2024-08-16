@@ -1,0 +1,347 @@
+/* You can add global styles to this file, and also import other style files */
+@import "_variable";
+@import "node_modules/bootstrap/scss/bootstrap";
+
+@font-face {
+  font-family: "DefaultEnglish";
+  src: url($font-en-thin-path);
+  font-weight: 100;
+}
+@font-face {
+  font-family: "DefaultEnglish";
+  src: url($font-en-extra-light-path);
+  font-weight: 200;
+}
+@font-face {
+  font-family: "DefaultEnglish";
+  src: url($font-en-light-path);
+  font-weight: 300;
+}
+@font-face {
+  font-family: "DefaultEnglish";
+  src: url($font-en-regular-path);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "DefaultEnglish";
+  src: url($font-en-medium-path);
+  font-weight: 500;
+}
+@font-face {
+  font-family: "DefaultEnglish";
+  src: url($font-en-semi-bold-path);
+  font-weight: 600;
+}
+@font-face {
+  font-family: "DefaultEnglish";
+  src: url($font-en-bold-path);
+  font-weight: 700;
+}
+@font-face {
+  font-family: "DefaultEnglish";
+  src: url($font-en-extra-bold-path);
+  font-weight: 800;
+}
+@font-face {
+  font-family: "DefaultEnglish";
+  src: url($font-en-black-path);
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "DefaultThai";
+  src: url($font-th-thin-path);
+  font-weight: 100;
+}
+@font-face {
+  font-family: "DefaultThai";
+  src: url($font-th-extra-light-path);
+  font-weight: 200;
+}
+@font-face {
+  font-family: "DefaultThai";
+  src: url($font-th-light-path);
+  font-weight: 300;
+}
+@font-face {
+  font-family: "DefaultThai";
+  src: url($font-th-regular-path);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "DefaultThai";
+  src: url($font-th-medium-path);
+  font-weight: 500;
+}
+@font-face {
+  font-family: "DefaultThai";
+  src: url($font-th-semi-bold-path);
+  font-weight: 600;
+}
+@font-face {
+  font-family: "DefaultThai";
+  src: url($font-th-bold-path);
+  font-weight: 700;
+}
+@font-face {
+  font-family: "DefaultThai";
+  src: url($font-th-extra-bold-path);
+  font-weight: 800;
+}
+@font-face {
+  font-family: "DefaultThai";
+  src: url($font-th-black-path);
+  font-weight: 900;
+}
+
+html,
+body {
+  font-family: "DefaultEnglish", "DefaultThai", Helvetica, "sans-serif";
+}
+
+hr {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #b4b4b4;
+  line-height: 0.1em;
+  margin: 15px 0 15px;
+  color: #b4b4b4;
+}
+
+hr.vertical {
+  height: 100%;
+  text-align: center;
+  border-bottom: none;
+  border-right: 1px solid #b4b4b4;
+  margin: 0;
+  color: #b4b4b4;
+}
+
+th {
+  color: $text-black-primary;
+}
+
+td {
+  color: $text-black-secondary;
+}
+
+router-outlet ~ * {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+/* Perfect Scroll Bar */
+.ps__rail-y,
+.ps__rail-x {
+  z-index: 1000;
+  background-color: transparent !important;
+}
+
+/* BS Datepicker */
+.bs-datepicker-container {
+  padding: 0;
+  button {
+    min-width: 0px;
+  }
+}
+
+.theme-green .bs-datepicker-head {
+  background: $primary;
+}
+
+.theme-green .bs-datepicker-body table td span.selected,
+.theme-green .bs-datepicker-body table td.selected span,
+.theme-green .bs-datepicker-body table td span[class*="select-"]:after,
+.theme-green .bs-datepicker-body table td[class*="select-"] span:after {
+  background: $primary;
+}
+
+.theme-green .bs-datepicker-body table td.week span {
+  color: $primary;
+}
+
+.bs-datepicker-body table th {
+  // font-size: $default-font-size;
+}
+
+.bs-datepicker-body table td span {
+  // font-size: $default-font-size;
+}
+
+bs-datepicker-navigation-view {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Bootstrap Override */
+.is-invalid {
+  padding: 0.375rem 0.55rem !important;
+  background-image: none !important;
+}
+
+.border {
+  border-radius: 4px !important;
+}
+
+.shadow-md {
+  box-shadow: 0px 3px 6px #00000029 !important;
+}
+
+.shadow-lg {
+  box-shadow: 0px 3px 15px #0000001a !important;
+}
+
+.spinner-border-lg {
+  display: inline-block;
+  width: 10rem;
+  height: 10rem;
+  vertical-align: text-bottom;
+  border: 0.5em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: 0.75s linear infinite spinner-border;
+}
+
+/* Custom Style */
+.btn-primary-gradient {
+  background: transparent
+    linear-gradient(
+      90deg,
+      $primary-gradient-start 0%,
+      $primary-gradient-end 100%
+    )
+    0% 0% no-repeat padding-box;
+  color: white;
+  border: none;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.btn-primary-gradient:hover {
+  background: transparent
+    linear-gradient(
+      90deg,
+      $primary-gradient-start 0%,
+      $primary-gradient-end 100%
+    )
+    0% 0% no-repeat padding-box;
+  border: none;
+  color: white;
+}
+
+.btn-danger-gradient {
+  background: transparent
+    linear-gradient(90deg, $danger-gradient-start 0%, $danger-gradient-end 100%)
+    0% 0% no-repeat padding-box;
+  color: white;
+  border: none;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.btn-danger-gradient:hover {
+  background: transparent
+    linear-gradient(90deg, $danger-gradient-start 0%, $danger-gradient-end 100%)
+    0% 0% no-repeat padding-box;
+  border: none;
+  color: white;
+}
+
+.font-size-12 {
+  font-size: 12px;
+}
+
+.font-size-14 {
+  font-size: 14px;
+}
+
+.font-size-16 {
+  font-size: 16px;
+}
+
+.font-size-18 {
+  font-size: 18px;
+}
+
+.font-size-20 {
+  font-size: 20px;
+}
+
+.font-size-24 {
+  font-size: 24px;
+}
+
+.font-weight-100 {
+  font-weight: 100;
+}
+
+.font-weight-200 {
+  font-weight: 200;
+}
+
+.font-weight-300 {
+  font-weight: 300;
+}
+
+.font-weight-400 {
+  font-weight: 400;
+}
+
+.font-weight-500 {
+  font-weight: 500;
+}
+
+.font-weight-600 {
+  font-weight: 600;
+}
+
+.font-weight-700 {
+  font-weight: 700;
+}
+
+.font-weight-800 {
+  font-weight: 800;
+}
+
+.font-weight-900 {
+  font-weight: 900;
+}
+
+.text-decoration-underline {
+  text-decoration: underline;
+}
+
+.text-black-primary {
+  color: $text-black-primary;
+}
+
+.text-black-secondary {
+  color: $text-black-secondary;
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
+
+#page-title {
+  font-size: 35px;
+  font-weight: 500;
+  color: $text-black-primary;
+}
+
+#page-description {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-black-primary;
+}
+
+.cookie_consent--title {
+  color: #00C2BA;
+}
+
+.cookie_consent--title:hover {
+  color: #00C2BA;
+}

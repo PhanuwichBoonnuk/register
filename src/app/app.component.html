@@ -1,0 +1,313 @@
+<div class="">
+  <div class="d-flex">
+    <div
+      class="sidebar align-self-stretch"
+      id="sidebar-wrapper"
+      *ngIf="openSidebar"
+      [@slide]
+    >
+      <perfect-scrollbar
+        [autoPropagation]="true"
+        style="width: 18rem; position: fixed; max-height: calc(100vh)"
+      >
+        <div class="list-group list-group-flush py-5">
+          <a
+            routerLink="/my-locker"
+            [routerLinkActive]="['active']"
+            class="sidebar-item border-0 px-5 py-3"
+          >
+            {{ "page.my-locker.title" | translate }}
+          </a>
+          <div
+            *ngIf="
+              ((scopes$ | async)?.actions &&
+                (scopes$ | async)?.actions !== 'read') ||
+              ((scopes$ | async)?.lockers &&
+                (scopes$ | async)?.lockers !== 'read') ||
+              ((scopes$ | async)?.lockergroups &&
+                (scopes$ | async)?.lockergroups !== 'read') ||
+              ((scopes$ | async)?.users &&
+                (scopes$ | async)?.users !== 'read') ||
+              ((scopes$ | async)?.usergroups &&
+                (scopes$ | async)?.usergroups !== 'read') ||
+              ((scopes$ | async)?.panels &&
+                (scopes$ | async)?.panels !== 'read')
+            "
+            class="px-4"
+          >
+            <hr />
+          </div>
+
+          <a
+            *ngIf="
+              (scopes$ | async)?.actions &&
+              (scopes$ | async)?.actions !== 'read'
+            "
+            routerLink="/admin/transaction"
+            [routerLinkActive]="['active']"
+            class="sidebar-item border-0 px-5 py-3"
+          >
+            {{ "page.transaction.title" | translate }}
+          </a>
+          <a
+            *ngIf="
+              (scopes$ | async)?.lockers &&
+              (scopes$ | async)?.lockers !== 'read'
+            "
+            routerLink="/admin/manage-locker"
+            [routerLinkActive]="['active']"
+            class="sidebar-item border-0 px-5 py-3"
+          >
+            {{ "page.manage-locker.title" | translate }}
+          </a>
+          <a
+            *ngIf="
+              (scopes$ | async)?.lockergroups &&
+              (scopes$ | async)?.lockergroups !== 'read'
+            "
+            routerLink="/admin/manage-locker-group"
+            [routerLinkActive]="['active']"
+            class="sidebar-item border-0 px-5 py-3"
+          >
+            {{ "page.manage-locker-group.title" | translate }}
+          </a>
+          <a
+            *ngIf="
+              (scopes$ | async)?.users && (scopes$ | async)?.users !== 'read'
+            "
+            routerLink="/admin/manage-user"
+            [routerLinkActive]="['active']"
+            class="sidebar-item border-0 px-5 py-3"
+          >
+            {{ "page.manage-user.title" | translate }}
+          </a>
+          <a
+            *ngIf="
+              (scopes$ | async)?.usergroups &&
+              (scopes$ | async)?.usergroups !== 'read'
+            "
+            routerLink="/admin/manage-user-group"
+            [routerLinkActive]="['active']"
+            class="sidebar-item border-0 px-5 py-3"
+          >
+            {{ "page.manage-user-group.title" | translate }}
+          </a>
+          <!-- <a
+            *ngIf="
+              (scopes$ | async)?.users && (scopes$ | async)?.users !== 'read'
+            "
+            routerLink="/admin/manage-ban"
+            [routerLinkActive]="['active']"
+            class="sidebar-item border-0 px-5 py-3"
+          >
+            Banned Users
+          </a> -->
+          <a
+            *ngIf="
+              (scopes$ | async)?.users && (scopes$ | async)?.users !== 'read' && enableCard
+            "
+            routerLink="/admin/manage-card"
+            [routerLinkActive]="['active']"
+            class="sidebar-item border-0 px-5 py-3"
+          >
+            Manage Cards
+          </a>
+          <!-- <a
+            *ngIf="
+              (scopes$ | async)?.panels && (scopes$ | async)?.panels !== 'read'
+            "
+            routerLink="/admin/manage-panel"
+            [routerLinkActive]="['active']"
+            class="sidebar-item border-0 px-5 py-3"
+          >
+            {{ "page.manage-panel.title" | translate }}
+          </a> -->
+          <!-- <a
+            routerLink="/admin/locker-report"
+            [routerLinkActive]="['active']"
+            class="sidebar-item border-0 px-5 py-3"
+          >
+            {{ "page.locker-report.title" | translate }}
+          </a> -->
+          <!-- <a
+            routerLink="/admin/people-report"
+            [routerLinkActive]="['active']"
+            class="sidebar-item border-0 px-5 py-3"
+          >
+            {{ "page.people-report.title" | translate }}
+          </a> -->
+          <a
+            *ngIf="
+              (scopes$ | async)?.locations &&
+              (scopes$ | async)?.locations !== 'read'
+            "
+            routerLink="/admin/server-setting"
+            [routerLinkActive]="['active']"
+            class="sidebar-item border-0 px-5 py-3"
+          >
+            {{ "page.server-setting.title" | translate }}
+          </a>
+
+          <div *ngIf="otherLinkUrl" class="px-4">
+            <hr />
+          </div>
+          <a
+            *ngIf="otherLinkUrl"
+            [href]="otherLinkUrl"
+            class="sidebar-text border-0 px-5 py-3"
+          >
+            {{ otherLinkLabel }}
+          </a>
+        </div>
+      </perfect-scrollbar>
+    </div>
+
+    <div id="page-content-wrapper">
+      <nav
+        *ngIf="showNavBar()"
+        class="navbar navbar-expand-lg navbar-light shadow-sm justify-content-between px-3"
+        style="position: fixed; height: 60px"
+        [class.shrink]="openSidebar"
+      >
+        <button
+          class="btn border-0 me-3"
+          (click)="openSidebar = !openSidebar"
+          (clickOutside)="
+            isMobile() ? (openSidebar = false) : (openSidebar = openSidebar)
+          "
+        >
+          <i class="bi bi-list"></i>
+        </button>
+        <img
+          [src]="'./config/images/logo-header.png' | imageUrl"
+          class="d-none d-lg-block logo-header"
+        />
+        <img
+          [src]="'./config/images/logo-header-mobile.png' | imageUrl"
+          class="d-block d-lg-none logo-header"
+        />
+        <div class="flex-grow-1"></div>
+        <div
+          class="position-relative d-flex align-items-center"
+          style="max-width: 300px"
+          (clickOutside)="openProfile = false"
+        >
+          <img
+            [src]="(profile$ | async)?.imgUrl | imageUrl"
+            class="rounded-circle me-2"
+            style="height: 32px; width: 32px; object-fit: cover"
+          />
+          <span class="d-none d-md-block nav-link text-truncate p-0">
+            {{ (profile$ | async)?.name }}
+          </span>
+          <span
+            class="border rounded px-1 ms-2 pointer"
+            (click)="openProfile = !openProfile"
+          >
+            <i class="bi bi-chevron-down"></i>
+          </span>
+
+          <div
+            *ngIf="openProfile"
+            class="d-block text-black-primary dropdown-menu dropdown-menu-right border-0 shadow-sm"
+            style="top: 105%;right: 0;"
+          >
+            <!-- <a class="dropdown-item pointer" (click)="openProfile = false"
+              >Profile</a
+            >
+            <div class="dropdown-divider"></div> -->
+            <ng-container *ngIf="(profile$ | async)?.enablePDPA">
+              <ng-container *ngIf="enableTermOfService">
+                <a class="dropdown-item px-4 text-black-primary pointer" (click)="openTermOfService()">
+                  {{ 'general.term-of-service.title' | translate }}
+                </a>
+                <div class="dropdown-divider"></div>
+              </ng-container>
+              <ng-container *ngIf="enablePersonalManagement">
+                <a class="dropdown-item px-4 text-black-primary pointer text-wrap" (click)="openPeronalInformation()">
+                  {{ 'general.personal-information.title' | translate }}
+                </a>
+                <div class="dropdown-divider"></div>
+              </ng-container>
+            </ng-container>
+
+            <a
+              class="dropdown-item px-4 text-black-primary pointer"
+              (click)="changePassword()"
+              >{{ "general.change-password" | translate }}</a
+            >
+            <div class="dropdown-divider"></div>
+            <div class="d-flex justify-content-center py-2">
+              <i class="bi bi-globe mx-2"></i>
+              <span
+                class="pointer p-0 mx-2"
+                [class.font-weight-700]="lang === 'th'"
+                (click)="changeLanguage('th')"
+                >TH</span
+              >
+              <div class="mx-2 py-1"><hr class="vertical" /></div>
+
+              <span
+                class="pointer p-0 mx-2"
+                [class.font-weight-700]="lang === 'en'"
+                (click)="changeLanguage('en')"
+                >EN</span
+              >
+            </div>
+            <div></div>
+            <div class="dropdown-divider"></div>
+            <a
+              class="dropdown-item px-4 text-black-primary pointer"
+              (click)="logout()"
+              >{{ "action.logout" | translate }}</a
+            >
+          </div>
+        </div>
+      </nav>
+      <div
+        class="position-relative"
+        [@fade]="outlet.isActivated ? outlet.activatedRoute : ''"
+      >
+        <router-outlet
+          #outlet="outlet"
+          class="position-absolute"
+        ></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="position: absolute; z-index: 10000">
+  <app-popup
+    *ngIf="isOpenPopup$ | async"
+    [data]="popupData$ | async"
+    [@popup]
+  ></app-popup>
+</div>
+
+<app-change-my-password
+  *ngIf="openChangePassword"
+  (close)="openChangePassword = false"
+></app-change-my-password>
+
+<app-loading *ngIf="showLoading"></app-loading>
+
+<!-- cookie consent -->
+<app-cookies-consent-banner
+  *ngIf="openCookiesConsentBanner"
+  (openSetting)="openCookiesPreferenceModal = true"
+  (acceptCookies)="openCookiesConsentBanner = false"
+></app-cookies-consent-banner>
+
+<!-- cookie preference -->
+<app-cookies-preference-modal
+  *ngIf="openCookiesPreferenceModal"
+  (close)="openCookiesPreferenceModal = false"
+  (accept)="
+    openCookiesConsentBanner = false; openCookiesPreferenceModal = false
+  "
+></app-cookies-preference-modal>
+
+<div *ngIf="isDev" class="is-dev text-center font-weight-bold">
+  Dev {{ version }}
+</div>

@@ -1,0 +1,97 @@
+<div class="shadow-lg p-4 mb-4" style="border-collapse: separate">
+  <div class="d-flex justify-content-between">
+    <div id="locker-title">{{ "locker.number" | translate }}</div>
+    <div id="locker-status" class="text-end font-weight-300 text-muted">
+      {{ "time.started" | translate }}
+      {{ locker.startTime | dateFormat: "HH:mm" }} ({{
+        relativeTime(locker.startTime)
+      }})
+    </div>
+  </div>
+  <div id="locker-name">
+    {{ locker.name }}
+  </div>
+
+  <div class="d-flex flex-column flex-lg-row justify-content-between">
+    <div>
+      <div id="locker-location" class="mb-4 mb-lg-0">
+        <span>{{ "location.title" | translate }}&nbsp;•&nbsp;</span>
+        <span>{{ locker.building }}</span
+        >,&nbsp; <span>{{ locker.floor }}</span
+        >,&nbsp; <span>{{ locker.zone }}</span
+        >,&nbsp;
+      </div>
+      
+      <div *ngIf="type === 'share' && locker.expired" class="mt-4 mb-4 mb-lg-0">
+        <div id="locker-message" class="d-flex rounded text-danger p-3">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          <span class="ms-3">
+            Please remove the stored items from this locker. Because the time of
+            use has expired
+          </span>
+        </div>
+      </div>
+      
+      <!-- ! show expire date -->
+      <div *ngIf="checkShowExpireDateConfig == true" class="mt-4 mb-4 mb-lg-0">
+        <div id="locker-message" class="d-flex rounded text-danger p-3 align-items-center">
+          <i class="bi bi-exclamation-triangle-fill custom-icon"></i>
+          <span class="ms-3">
+            {{ checkShowExpireDateConfig ? ('general.mylocker-show-expire.title' | translate) : '' }} {{locker.expiredOn}}
+          </span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="mx-2"></div>
+    <div *ngIf="waitOpenLocker" class="d-flex justify-content-between">
+      <div class="align-self-end flex-grow-1 d-block d-lg-flex flex-row">
+        <!-- mobile countdown -->
+        <div
+          class="d-flex d-lg-none flex-column justify-content-center text-center text-black-primary bg-light mx-auto mb-3"
+          style="border-radius: 50%; width: 200px; height: 200px"
+        >
+          <div class="font-weight-700 mb-2">
+            {{ "locker.open-in" | translate: { time: "" } }}
+          </div>
+          <div class="font-weight-700" style="font-size: 48px">
+            {{ time }}
+          </div>
+        </div>
+        <!-- desktop countdown -->
+        <div
+          class="d-none d-lg-block btn text-black-primary font-weight-600 w-100 me-3"
+          style="background: #d9dfe5; white-space: nowrap"
+        >
+          {{ "locker.open-in" | translate: { time: time } }}
+        </div>
+        <button
+          class="btn btn-outline-primary shadow-sm w-100"
+          (click)="cancelOpenLocker()"
+        >
+          {{ "locker.open-cancel" | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="!waitOpenLocker" class="d-flex justify-content-between">
+      <div *ngIf="type === 'share'" class="align-self-end flex-grow-1">
+        <button
+          class="btn btn-secondary shadow-sm w-100"
+          (click)="return.emit(this.locker)"
+        >
+          {{ "locker.return" | translate }}
+        </button>
+      </div>
+      <div *ngIf="type === 'share'" class="mx-2"></div>
+      <div class="align-self-end flex-grow-1">
+        <button
+          class="btn btn-primary shadow-sm w-100"
+          (click)="openLocker(locker)"
+        >
+          {{ "locker.open" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

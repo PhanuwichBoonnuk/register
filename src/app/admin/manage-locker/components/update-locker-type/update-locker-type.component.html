@@ -1,0 +1,71 @@
+<div class="modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 rounded-0 px-3 px-sm-5 py-4 py-sm-5">
+      <div class="text-end">
+        <i
+          class="bi bi-x pointer"
+          style="font-size: 32px; color: #a4afbf"
+          (click)="cancel()"
+        ></i>
+      </div>
+      <div class="mb-4">
+        <div id="page-title">
+          {{ "page.manage-locker.set-type.title" | translate }}
+        </div>
+        <div id="page-description">
+          {{ "page.manage-locker.set-type.description" | translate }}
+        </div>
+      </div>
+
+      <form [formGroup]="lockerForm" class="text-black-primary">
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">
+            {{ "locker.type.title" | translate }}
+          </label>
+          <div class="col-sm-7">
+            <select
+              formControlName="type"
+              class="form-control"
+              [class.is-invalid]="type?.touched && type?.errors"
+            >
+              <option value="" disabled>
+                {{ "locker.type.select" | translate }}
+              </option>
+              <option value="personal">
+                {{ "locker.type.personal" | translate }}
+              </option>
+              <option value="share">
+                {{ "locker.type.share" | translate }}
+              </option>
+              <option *ngIf="enableAutoAssign" value="hotseat_auto_assign">
+                {{ "locker.type.hotseat-auto-assign" | translate }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </form>
+
+      <hr class="border-bottom-0 mb-4" />
+
+      <div class="d-flex justify-content-center">
+        <button
+          id="action-button"
+          class="btn btn-light text-primary w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="cancel()"
+        >
+          {{ "action.cancel" | translate }}
+        </button>
+        <div class="mx-2"></div>
+        <button
+          id="action-button"
+          class="btn btn-primary-gradient w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="update()"
+        >
+          {{ "action.save" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,450 @@
+<div
+  class="d-flex flex-column p-3 p-lg-5"
+  style="
+    min-height: calc(100vh - 60px);
+    max-height: calc(100vh - 60px);
+    margin-top: 60px;
+  "
+>
+  <!-- header -->
+  <div class="d-block d-lg-flex justify-content-between">
+    <div class="mb-3 mb-lg-4">
+      <div id="page-title" class="mb-2">
+        {{ "page.manage-locker.title" | translate }}
+      </div>
+      <div id="page-description">
+        {{ "page.manage-locker.description" | translate }}
+      </div>
+    </div>
+
+    <!-- Hide 'Create Locker' when role is not SuperAdmin -->
+    <div
+      *ngIf="(profile$ | async)?.lockerRoles.indexOf('0') > -1"
+      class="d-none d-lg-flex mb-3 mb-lg-4 super-admin-btn-group"
+    >
+      <input type="file" #fileUpload (change)="onFileSelected($event)" hidden accept=".csv">
+      <button class="btn btn-primary-gradient" (click)="fileUpload.click()">
+        {{ "action.import" | translate }}
+      </button>
+      <button class="btn btn-primary-gradient" (click)="export()">
+        {{ "action.export" | translate }}
+      </button>
+      <button
+        class="btn btn-primary-gradient"
+        (click)="createLocker()"
+      >
+        {{ "locker.create" | translate }}
+      </button>
+    </div>
+  </div>
+
+  <!-- filter -->
+  <div class="d-flex d-lg-none text-black-secondary mb-2">
+    <div class="text-decoration-none" (click)="openFilter = !openFilter">
+      <i class="bi bi-filter-left me-1" style="font-size: 24px"></i>
+      <span class="font-weight-600">{{ "general.filter" | translate }}</span>
+    </div>
+    <div class="flex-grow-1"></div>
+    <div>
+      <i
+        class="bi bi-search me-2"
+        style="font-size: 20px"
+        (click)="openSearch = !openSearch"
+      ></i>
+      <i
+        *ngIf="(profile$ | async)?.lockerRoles.indexOf('0') > -1"
+        class="bi bi-plus-square-fill"
+        style="font-size: 20px"
+        (click)="createLocker()"
+      ></i>
+    </div>
+  </div>
+  <form [formGroup]="filterForm" class="text-black-primary">
+    <div class="row">
+      <div *ngIf="openFilter" class="col-12 col-lg-6 d-md-flex mb-3 mb-lg-4">
+        <div class="w-100 me-0 me-md-3">
+          <label class="font-size-12 mb-1">{{
+            "location.building.title" | translate
+          }}</label>
+          <div class="input-group shadow-sm me-3 mb-2 mb-lg-0">
+            <select
+              formControlName="buildingId"
+              class="form-control"
+              [class.is-invalid]="buildingId?.touched && buildingId?.errors"
+            >
+              <option value="">
+                {{ "location.building.all" | translate }}
+              </option>
+              <option *ngFor="let building of buildings" [value]="building.id">
+                {{ building.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="w-100 me-0 me-md-3">
+          <label class="font-size-12 mb-1">{{
+            "location.floor.title" | translate
+          }}</label>
+          <div class="input-group shadow-sm me-3 mb-2 mb-lg-0">
+            <select
+              formControlName="floorId"
+              class="form-control"
+              [class.is-invalid]="floorId?.touched && floorId?.errors"
+            >
+              <option value="">{{ "location.floor.all" | translate }}</option>
+              <option *ngFor="let floor of floors" [value]="floor.id">
+                {{ floor.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="w-100 me-0 me-md-3">
+          <label class="font-size-12 mb-1">{{
+            "location.zone.title" | translate
+          }}</label>
+          <div class="input-group shadow-sm me-3 mb-2 mb-lg-0">
+            <select
+              formControlName="zoneId"
+              class="form-control"
+              [class.is-invalid]="zoneId?.touched && zoneId?.errors"
+            >
+              <option value="">{{ "location.zone.all" | translate }}</option>
+              <option *ngFor="let zone of zones" [value]="zone.id">
+                {{ zone.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="w-100">
+          <label class="font-size-12 mb-1">
+            {{ "location.group.title" | translate }}
+          </label>
+          <div class="input-group shadow-sm mb-2 mb-lg-0">
+            <select
+              formControlName="groupId"
+              class="form-control"
+              [class.is-invalid]="groupId?.touched && groupId?.errors"
+            >
+              <option value="">{{ "location.group.all" | translate }}</option>
+              <option *ngFor="let group of groups" [value]="group.id">
+                {{ group.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-3 mb-2 mb-lg-4 d-none d-lg-block"></div>
+
+      <div *ngIf="openSearch" class="col-12 col-lg-3 mb-3 mb-lg-4">
+        <div class="w-100">
+          <label class="d-none d-lg-block font-size-12 mb-1">&nbsp;</label>
+          <div class="input-group shadow-sm">
+            <input
+              formControlName="searchText"
+              type="text"
+              class="form-control border-right-0"
+              placeholder="Search"
+            />
+            <div class="input-group-append border-left-0">
+              <span class="input-group-text bg-white">
+                <i class="bi bi-search"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- select all -->
+  <div
+    class="d-flex justify-content-between align-items-center shadow-md p-3"
+    style="background-color: #f5f8fb"
+  >
+    <div
+      class="d-flex align-items-center text-black-primary pointer"
+      (click)="selectAllLocker()"
+    >
+      <input
+        class="pointer me-2"
+        [checked]="isSelectedAllLocker()"
+        [indeterminate]="isSelectedSomeLocker()"
+        type="checkbox"
+      />
+      {{ "locker.select-all" | translate }}&nbsp;({{
+        "locker.plural" | translate: { count: selectedLocker.length +'/'+ filteredLocker().length }
+      }})
+    </div>
+
+    <div class="d-none d-lg-flex justify-content-between align-items-center">
+      <div class="">
+        <button
+          class="btn btn-primary"
+          style="min-width: 180px"
+          (click)="updateSelectedLockerType()"
+        >
+          {{ "locker.set-type" | translate }}
+        </button>
+        &nbsp;
+        <button
+          class="btn btn-primary"
+          style="min-width: 180px"
+          (click)="unlockSelectedLocker()"
+        >
+          {{ "locker.unlock" | translate }}
+        </button>
+      </div>
+      <div
+        *ngIf="(profile$ | async)?.lockerRoles.indexOf('0') > -1"
+        class="mx-3 align-self-stretch"
+      >
+        <hr class="vertical" />
+      </div>
+      <div *ngIf="(profile$ | async)?.lockerRoles.indexOf('0') > -1" class="">
+        <i
+          class="bi bi-trash-fill pointer"
+          (click)="deleteSelectedLocker()"
+        ></i>
+      </div>
+    </div>
+
+    <div class="d-block d-lg-none">
+      <div class="position-relative" dropdown container="body">
+        <i
+          class="bi bi-three-dots-vertical text-black-primary"
+          dropdownToggle
+        ></i>
+
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu">
+          <li role="menuitem border-0">
+            <a class="dropdown-item" (click)="updateSelectedLockerType()">
+              {{ "locker.set-type" | translate }}</a
+            >
+          </li>
+          <li role="menuitem border-0">
+            <a class="dropdown-item" (click)="unlockSelectedLocker()">
+              {{ "locker.unlock" | translate }}</a
+            >
+          </li>
+          <li role="menuitem border-0" *ngIf="(profile$ | async)?.lockerRoles.indexOf('0') > -1">
+            <a class="dropdown-item" (click)="deleteSelectedLocker()">
+              {{ "action.delete" | translate }}</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- table -->
+  <div class="flex-grow-1 shadow-md" style="overflow: auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center"></th>
+          <th (click)="changeSort('group')">
+            {{ "locker.group.title" | translate }}
+          </th>
+          <th (click)="changeSort('name')">
+            {{ "locker.name" | translate }}
+          </th>
+          <ng-container *ngIf="(profile$ | async)?.lockerRoles.indexOf('0') > -1">
+            <th (click)="changeSort('cu')">
+              CU
+            </th>
+            <th (click)="changeSort('relay')">
+              Relay
+            </th>
+          </ng-container>
+          
+          <th (click)="changeSort('status')">
+            {{ "locker.status.title" | translate }}
+          </th>
+          <!-- <th
+            (click)="changeSort('locked')"
+            class="text-center text-nowrap"
+            style="width: 1%"
+          >
+            {{ "locker.door-status" | translate }}
+          </th> -->
+          <th>{{ "location.title" | translate }}</th>
+          <th (click)="changeSort('type')">
+            {{ "locker.type.title" | translate }}
+          </th>
+          <th>
+            {{ "locker.owner" | translate }}/{{
+              "locker.current-use" | translate
+            }}
+          </th>
+          <th style="width: 1%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let locker of lockers
+              | search: searchText.value
+              | filterLocation: filterForm.value
+              | sortBy: sort.order:sort.property
+          "
+        >
+          <th class="text-center">
+            <input
+              class="pointer"
+              [checked]="isSelectedLocker(locker.id)"
+              type="checkbox"
+              (click)="addSelectedLocker(locker.id)"
+            />
+          </th>
+          <td>
+            <span
+              *ngIf="locker.group"
+              class="text-primary text-decoration-underline font-weight-600 pointer"
+              (click)="goToManageLockerGroup()"
+              >{{ locker.group }}</span
+            >
+            <button
+              *ngIf="!locker.group"
+              class="btn btn-success text-white text-nowrap"
+              (click)="updateLocker(locker.id)"
+            >
+              <i class="bi bi-plus-circle-fill"></i>&nbsp;{{
+                "locker.group.set" | translate
+              }}
+            </button>
+          </td>
+          <td>{{ locker.name }}</td>
+          <ng-container *ngIf="(profile$ | async)?.lockerRoles.indexOf('0') > -1">
+            <td>
+              {{ locker.cu }}
+            </td>
+            <td>
+              {{ locker.relay }}
+            </td>
+          </ng-container>
+          <td>
+            <div
+              class="px-3 py-1 rounded text-center font-size-14"
+              [class.status-available]="
+                !locker.disabled && locker.status === 'available'
+              "
+              [class.status-inuse]="
+                !locker.disabled && locker.status === 'in-use'
+              "
+              [class.status-disabled]="locker.disabled"
+            >
+              <span *ngIf="!locker.disabled && locker.status === 'available'">
+                {{ "locker.status.available" | translate }}
+              </span>
+              <span *ngIf="!locker.disabled && locker.status === 'in-use'">
+                {{ "locker.status.in-use" | translate }}
+              </span>
+              <span *ngIf="locker.disabled">
+                {{ "locker.status.disabled" | translate }}
+              </span>
+            </div>
+          </td>
+          <!-- <td
+            class="text-center text-nowrap"
+            style="width: 1%; font-size: 24px"
+          >
+            <i *ngIf="locker.locked" class="bi bi-lock-fill"></i>
+            <i *ngIf="!locker.locked" class="bi bi-unlock-fill"></i>
+          </td> -->
+          <td>{{ locker.building }}, {{ locker.floor }}, {{ locker.zone }}</td>
+          <td>
+            <span *ngIf="locker.type === 'personal'">{{
+              "locker.type.personal" | translate
+            }}</span>
+            <span *ngIf="locker.type === 'share'">{{
+              "locker.type.share" | translate
+            }}</span>
+            <span *ngIf="locker.type === 'hotseat_auto_assign'">{{
+              "locker.type.hotseat-auto-assign" | translate
+            }}</span>
+          </td>
+          <td>
+            <div *ngFor="let owner of locker.owners">
+              <span>{{ owner.name }}</span>
+              <span *ngIf="owner.pin">(PIN: {{ owner.pin }})</span>
+            </div>
+            <button
+              *ngIf="locker.owners.length === 0 && locker.type === 'personal'"
+              class="btn btn-success text-white pointer"
+              (click)="updateLocker(locker.id)"
+            >
+              <i class="bi bi-plus-circle-fill"></i>&nbsp;{{
+                "user.set" | translate
+              }}
+            </button>
+            <div *ngIf="locker.owners.length === 0 && locker.type === 'share'">
+              -
+            </div>
+          </td>
+          <td style="width: 1%">
+            <div class="position-relative" dropdown container="body">
+              <i class="bi bi-three-dots-vertical pointer" dropdownToggle></i>
+
+              <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu">
+                <li role="menuitem border-0">
+                  <a
+                    class="dropdown-item pointer"
+                    (click)="returnLocker(locker)"
+                    >{{ "locker.force-return" | translate }}</a
+                  >
+                </li>
+                <li *ngIf="!locker.disabled" role="menuitem border-0">
+                  <a
+                    class="dropdown-item pointer"
+                    (click)="disableLocker(locker)"
+                    >{{ "action.disable" | translate }}</a
+                  >
+                </li>
+                <li *ngIf="locker.disabled" role="menuitem border-0">
+                  <a
+                    class="dropdown-item pointer"
+                    (click)="enableLocker(locker)"
+                    >{{ "action.enable" | translate }}</a
+                  >
+                </li>
+                <li role="menuitem border-0">
+                  <a
+                    class="dropdown-item pointer"
+                    (click)="updateLocker(locker.id)"
+                    >{{ "action.edit" | translate }}</a
+                  >
+                </li>
+                <li
+                  *ngIf="(profile$ | async)?.lockerRoles.indexOf('0') > -1"
+                  role="menuitem border-0"
+                >
+                  <a
+                    class="dropdown-item pointer"
+                    (click)="deleteLocker(locker)"
+                    >{{ "action.delete" | translate }}</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="lockers.length === 0">
+          <td colspan="8" class="text-center">
+            <div class="p-5">
+              <h3>{{ "general.no-data" | translate }}</h3>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div
+  class="position-absolute"
+  style="z-index: 100"
+  [@fade]="outlet.isActivated ? outlet.activatedRoute : ''"
+>
+  <router-outlet #outlet="outlet" class="position-absolute"></router-outlet>
+</div>

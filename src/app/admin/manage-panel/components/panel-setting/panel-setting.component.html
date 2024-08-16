@@ -1,0 +1,198 @@
+<div class="modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 rounded-0 px-3 px-sm-5 py-4 py-sm-5">
+      <div class="text-end">
+        <i
+          class="bi bi-x pointer"
+          style="font-size: 32px; color: #a4afbf"
+          (click)="cancel()"
+        ></i>
+      </div>
+      <div class="mb-4">
+        <div *ngIf="panelId === 'default'" id="page-title">
+          {{ "page.manage-panel.default-setting.title" | translate }}
+        </div>
+        <div *ngIf="panelId !== 'default'" id="page-title">
+          {{
+            "page.manage-panel.panel-setting.title"
+              | translate: { name: name.value }
+          }}
+        </div>
+        <div id="page-description">
+          {{ "page.manage-panel.panel-setting.description" | translate }}
+        </div>
+      </div>
+
+      <form [formGroup]="panelForm" class="text-black-primary">
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "general.logo" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <app-image-upload
+              [id]="'logo'"
+              (success)="setLogo($event)"
+            ></app-image-upload>
+            <img
+              *ngIf="logo.value"
+              [src]="logo.value | imageUrl"
+              style="height: 200px; width: 200px; object-fit: contain"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "general.background" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <app-image-upload
+              [id]="'background'"
+              (success)="setBackground($event)"
+            ></app-image-upload>
+            <img
+              *ngIf="background.value"
+              [src]="background.value | imageUrl"
+              style="height: 200px; width: 200px; object-fit: contain"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "general.default-language" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <select
+              formControlName="defaultLanguage"
+              class="form-control"
+              [class.is-invalid]="
+                defaultLanguage?.touched && defaultLanguage?.errors
+              "
+            >
+              <option value="th">Thai</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "general.welcome-message" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <input
+              formControlName="welcome"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="welcome?.touched && welcome?.errors"
+              [placeholder]="'general.welcome-message' | translate"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "general.forgot-pin-message" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <input
+              formControlName="forgotPinText"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="
+                forgotPinText?.touched && forgotPinText?.errors
+              "
+              [placeholder]="'general.forgot-pin-message' | translate"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "general.company" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <input
+              formControlName="company"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="company?.touched && company?.errors"
+              [placeholder]="'general.company' | translate"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "general.qr-code" | translate
+          }}</label>
+          <div class="col-sm-7 d-flex align-items-center">
+            <input
+              formControlName="qrCode"
+              class="pointer"
+              type="checkbox"
+              [class.is-invalid]="qrCode?.touched && qrCode?.errors"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "general.rfid-card" | translate
+          }}</label>
+          <div class="col-sm-7 d-flex align-items-center">
+            <input
+              formControlName="rfIdCard"
+              class="pointer"
+              type="checkbox"
+              [class.is-invalid]="rfIdCard?.touched && rfIdCard?.errors"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "general.face-scan" | translate
+          }}</label>
+          <div class="col-sm-7 d-flex align-items-center">
+            <input
+              formControlName="faceScan"
+              class="pointer"
+              type="checkbox"
+              [class.is-invalid]="faceScan?.touched && faceScan?.errors"
+            />
+          </div>
+        </div>
+        <div *ngIf="panelId !== 'default'" class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "general.reset-to-default" | translate
+          }}</label>
+          <div class="col-sm-7 d-flex align-items-center">
+            <button
+              class="btn btn-outline-primary"
+              style="min-width: 180px"
+              (click)="reset()"
+            >
+              {{ "action.reset" | translate }}
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <hr class="border-bottom-0 mb-4" />
+
+      <div class="d-flex justify-content-center">
+        <button
+          id="action-button"
+          class="btn btn-light text-primary w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="cancel()"
+        >
+          {{ "action.cancel" | translate }}
+        </button>
+        <div class="mx-2"></div>
+        <button
+          id="action-button"
+          class="btn btn-primary-gradient w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="update()"
+        >
+          {{ "action.save" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

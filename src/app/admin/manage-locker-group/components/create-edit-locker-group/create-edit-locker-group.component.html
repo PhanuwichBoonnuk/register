@@ -1,0 +1,195 @@
+<div class="modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 rounded-0 px-3 px-sm-5 py-4 py-sm-5">
+      <div class="text-end">
+        <i
+          class="bi bi-x pointer"
+          style="font-size: 32px; color: #a4afbf"
+          (click)="cancel()"
+        ></i>
+      </div>
+      <div class="mb-4">
+        <div *ngIf="!lockerGroupId" id="page-title">
+          {{ "page.manage-locker-group.create.title" | translate }}
+        </div>
+        <div *ngIf="lockerGroupId" id="page-title">
+          {{ "page.manage-locker-group.update.title" | translate }}
+        </div>
+        <div *ngIf="!lockerGroupId" id="page-description">
+          {{ "page.manage-locker-group.create.description" | translate }}
+        </div>
+        <div *ngIf="lockerGroupId" id="page-description">
+          {{ "page.manage-locker-group.update.description" | translate }}
+        </div>
+      </div>
+      <div *ngIf="!loading" class="d-flex justify-content-center align-items-center" style="height: 500px;">
+        <div class="spinner-border text-primary" role="status" style="width: 15rem; height: 15rem;">
+          
+        </div>
+      </div>
+      <form  *ngIf="loading" [formGroup]="lockerGroupForm" class="text-black-primary">
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "locker.group.name" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <input
+              formControlName="name"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="name?.touched && name?.errors"
+              [placeholder]="'locker.group.name' | translate"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "location.building.title" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <select
+              formControlName="buildingId"
+              class="form-control"
+              [class.is-invalid]="buildingId?.touched && buildingId?.errors"
+            >
+              <option value="" disabled>
+                {{ "location.building.select" | translate }}
+              </option>
+              <option *ngFor="let building of buildings" [value]="building.id">
+                {{ building.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "location.floor.title" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <select
+              formControlName="floorId"
+              class="form-control"
+              [class.is-invalid]="floorId?.touched && floorId?.errors"
+            >
+              <option value="" disabled>
+                {{ "location.floor.select" | translate }}
+              </option>
+              <option *ngFor="let floor of floors" [value]="floor.id">
+                {{ floor.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "location.zone.title" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <select
+              formControlName="zoneId"
+              class="form-control"
+              [class.is-invalid]="zoneId?.touched && zoneId?.errors"
+            >
+              <option value="" disabled>
+                {{ "location.zone.select" | translate }}
+              </option>
+              <option *ngFor="let zone of zones" [value]="zone.id">
+                {{ zone.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "locker.group.auto-assign" | translate
+          }}</label>
+          <div class="col-sm-7 d-flex align-items-center">
+            <input
+              formControlName="autoAssign"
+              class="pointer"
+              type="checkbox"
+              [class.is-invalid]="autoAssign?.touched && autoAssign?.errors"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "locker.group.allow-guest" | translate
+          }}</label>
+          <div class="col-sm-7 d-flex align-items-center">
+            <input
+              formControlName="allowGuest"
+              class="pointer"
+              type="checkbox"
+              [class.is-invalid]="allowGuest?.touched && allowGuest?.errors"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "panel.title" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <select
+              formControlName="panel"
+              class="form-control"
+              [class.is-invalid]="panel?.touched && panel?.errors"
+            >
+              <option value="" disabled>
+                {{ "panel.select" | translate }}
+              </option>
+              <option *ngFor="let panel of panels" [value]="panel.id">
+                {{ panel.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group mb-3 row">
+          <label class="col-sm-4 col-form-label">{{
+            "general.layout" | translate
+          }}</label>
+          <div class="col-sm-7">
+            <app-image-upload (success)="setLayout($event)"></app-image-upload>
+            <img
+              *ngIf="layout.value"
+              [src]="layout.value | imageUrl"
+              style="height: 200px; width: 200px; object-fit: contain"
+            />
+          </div>
+        </div>
+      </form>
+
+      <hr class="border-bottom-0 mb-4" />
+
+      <div class="d-flex justify-content-center">
+        <button
+          id="action-button"
+          class="btn btn-light text-primary w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="cancel()"
+        >
+          {{ "action.cancel" | translate }}
+        </button>
+        <div class="mx-2"></div>
+        <button
+          *ngIf="!lockerGroupId"
+          id="action-button"
+          class="btn btn-primary-gradient w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="create()"
+        >
+          {{ "action.save" | translate }}
+        </button>
+        <button
+          *ngIf="lockerGroupId"
+          id="action-button"
+          class="btn btn-primary-gradient w-100 shadow-sm"
+          style="max-width: 180px"
+          (click)="update()"
+        >
+          {{ "action.update" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+@import "_variable";
+
+.or-element {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #b4b4b4;
+  line-height: 0.1em;
+  margin: 15px 0 15px;
+  color: #b4b4b4;
+
+  span {
+    padding: 0px 10px;
+    background: white;
+  }
+}
+
+.logo-login {
+  max-height: $logo-login-max-height;
+}
+
+/*  Small Size */
+@media (min-width: 576px) {
+  .modal-dialog {
+    min-width: 500px;
+  }
+}
+
+/* Medium Size */
+@media (min-width: 768px) {
+  .modal-dialog {
+    min-width: 700px;
+  }
+}
+
+/* Large Size */
+@media (min-width: 992px) {
+  .modal-dialog {
+    min-width: 700px;
+  }
+}

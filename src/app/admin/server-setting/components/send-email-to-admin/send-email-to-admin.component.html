@@ -1,0 +1,28 @@
+<div>
+    <div class="font-weight-600 text-black-primary mb-3" style="font-size: 24px">
+        {{ 'send-email-to-admin.title' | translate }}
+        <small>
+            <i>
+                {{ 'send-email-to-admin.subtitle' | translate }}
+            </i>
+        </small>
+    </div>
+    <div class="mb-3 row">
+        <div class="col-sm-10">
+            <textarea name="listOfEmail" id="listOfEmail" 
+                class="form-control" 
+                [(ngModel)]="listOfEmail"
+                (ngModelChange)="isInValidEmail = false;">
+            </textarea>
+            <p *ngIf="isInValidEmail" class="bg-danger text-white text-center rounded-bottom">
+                {{ isInValidEmailMsg }}
+            </p>
+        </div>
+        <div class="col-sm-2 text-center">
+            <button class="btn btn-primary align-items-center" (click)="onUpdate();">
+                {{ 'action.update' | translate }}
+            </button>
+        </div>
+    </div>
+
+</div>
