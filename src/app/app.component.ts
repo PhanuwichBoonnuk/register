@@ -31,7 +31,7 @@ import {
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { fadeAnimation } from '@shared/animations';
-import { UserService } from '@shared/service/user.service';
+// import { UserService } from '@shared/service/user.service';
 import { UtilService } from '@shared/service/util.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
@@ -111,7 +111,7 @@ export class AppComponent implements OnInit {
     private popupService: PopupService,
     private translateService: TranslateService,
     private authService: AuthService,
-    private userService: UserService,
+    // private userService: UserService,
     private cookieService: CookieService,
     private utilService: UtilService,
     private authStore: Store<AuthState>,
@@ -163,16 +163,16 @@ export class AppComponent implements OnInit {
       }
     });
 
-    if (this.cookieService.get('access-token')) {
-      this.userService.getProfile().subscribe(
-        (response: any) => {
-          this.authStore.dispatch(
-            new Login(response.profile, response.profile.lockerScopes)
-          );
-        },
-        (error) => {}
-      );
-    }
+    // if (this.cookieService.get('access-token')) {
+    //   this.userService.getProfile().subscribe(
+    //     (response: any) => {
+    //       this.authStore.dispatch(
+    //         new Login(response.profile, response.profile.lockerScopes)
+    //       );
+    //     },
+    //     (error) => {}
+    //   );
+    // }
 
     // this.profile$.subscribe(auth => {
     //   if (this.enablePDPA && auth?.pdpaData?.acceptDataConsent === false) this.openCookieConsent();
