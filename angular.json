@@ -61,8 +61,8 @@
           "configurations": {
             "Exzy": {
               "outputPath": "dist/Exzy",
-              "baseHref": "/lockers/",
-              "deployUrl": "/lockers/",
+              "baseHref": "/",
+              "deployUrl": "/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

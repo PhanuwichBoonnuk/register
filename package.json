@@ -43,7 +43,7 @@
     "primeng": "^10.0.3",
     "primeng-lts": "^10.1.5",
     "rxjs": "~6.6.0",
-    "tslib": "^2.5.0",
+    "tslib": "^2.6.3",
     "web-animations-js": "^2.3.2",
     "webpack": "^4.46.0",
     "zone.js": "~0.10.2"

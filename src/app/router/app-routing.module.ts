@@ -2,44 +2,28 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@core/auth.guard';
 
-// Import Components
-import { MyQrComponent } from '../my-locker/components/my-qr/my-qr.component';
-import { MyLockerComponent } from '../my-locker/my-locker.component';
+// นำเข้า Components ที่ต้องใช้
 import { PreRegisterComponents } from '../pages/preRegister/pre-register.component';
-// Define routes in a separate constant for easier maintenance
+
+// กำหนดเส้นทางในรูปแบบคงที่เพื่อให้ง่ายต่อการบำรุงรักษา
 const appRoutes: Routes = [
-  // Login route
+  // เส้นทางสำหรับ Login ที่ใช้ AuthGuard ตรวจสอบ
   {
-    path: 'login',
+    path: 'register',
     component: PreRegisterComponents,
+    canActivate: [AuthGuard],  // ใช้ middleware (AuthGuard) ในการตรวจสอบก่อนเข้าถึง
   },
-  // My Locker route with child route and AuthGuard
-  {
-    path: 'my-locker',
-    component: MyLockerComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: 'qr', component: MyQrComponent },
-    ],
-  },
-  // Lazy-loaded Admin module with AuthGuard
-  {
-    path: 'admin',
-    loadChildren: () =>
-      import('../admin/admin.module').then((m) => m.AdminModule),
-    canActivate: [AuthGuard],
-  },
-  // Default route
+  // เส้นทางเริ่มต้น (Home route)
   {
     path: '',
-    redirectTo: 'my-locker',
+    component: PreRegisterComponents, // หรือสามารถเปลี่ยนไปใช้ component อื่นตามที่ต้องการ
     pathMatch: 'full',
   },
-  // Fallback route for undefined paths
+  // เส้นทาง fallback สำหรับเส้นทางที่ไม่ได้กำหนดไว้
   {
     path: '**',
-    redirectTo: 'my-locker',
-    pathMatch: 'full',
+    redirectTo: '',
+    pathMatch: 'full', // หากเส้นทางไม่ถูกต้อง ให้เปลี่ยนเส้นทางกลับไปที่หน้าแรก
   },
 ];
 
@@ -48,4 +32,3 @@ const appRoutes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-

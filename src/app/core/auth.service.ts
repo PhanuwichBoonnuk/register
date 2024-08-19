@@ -29,22 +29,6 @@ export class AuthService {
     private popupService: PopupService
   ) {}
 
-  // getSelf() {
-  //   let headers = this.headers;
-  //   if (this.cookieService.get('access-token')) {
-  //     headers = headers.set(
-  //       'access-token',
-  //       this.cookieService.get('access-token')
-  //     );
-  //   }
-
-  //   this.http
-  //     .get(this.apiUrl + '/self', { headers: headers })
-  //     .subscribe((response: any) => {
-  //       this.isLoggedIn.next(true);
-  //     });
-  // }
-
   login(data) {
     return this.http.post('/users/login', data);
   }
