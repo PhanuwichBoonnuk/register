@@ -29,10 +29,15 @@ $form-sumbit-gradient-color-end:#004081 !default;
 }
 
 .right-panel {
+    box-shadow: 0px 1px 7px rgb(110, 110, 110) inset;
+    // box-shadow: 0px 10px 0px lightblue inset;
+
+
     flex: 1;
     background-color: $form-register-background-color;
     display: flex;
 }
+
 
 .right-panel-form {
     width: 100%; 
