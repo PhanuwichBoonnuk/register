@@ -3,15 +3,16 @@ import { Component, NgZone, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pre-register',
-  templateUrl: './pre-register.component.html',
-  styleUrls: ['./pre-register.component.scss'],
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
 })
 export class PreRegisterComponents implements OnInit {
+  backgroundImagePath: string;
 
-  // Implement ngOnInit method
+  constructor() {}
+
   ngOnInit(): void {
-    // Logic to execute when the component initializes
-    console.log('PreRegisterComponents initialized');
+    this.backgroundImagePath = './config/images/image-register.png';
   }
 
 }

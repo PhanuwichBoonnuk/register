@@ -1,0 +1,25 @@
+@import "_variable";
+$footer-background-color: #FFFF !default;
+
+.footer {
+  width: 100%;
+  height: 60px; 
+  flex-shrink: 0; // ป้องกันการบีบตัว
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $footer-background-color;
+  border-top: 1px solid #E0E0E0; 
+
+  .footer-content {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #9E9E9E;
+    
+    img {
+      height: 20px;
+      margin-left: 5px;
+    }
+  }
+}

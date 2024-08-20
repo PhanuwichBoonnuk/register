@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@core/auth.guard';
 
 // นำเข้า Components ที่ต้องใช้
-import { PreRegisterComponents } from '../pages/preRegister/pre-register.component';
+import { PreRegisterComponents } from '../pages/register/register.component';
 
 // กำหนดเส้นทางในรูปแบบคงที่เพื่อให้ง่ายต่อการบำรุงรักษา
 const appRoutes: Routes = [

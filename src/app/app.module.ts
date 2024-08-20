@@ -26,6 +26,9 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MyQrComponent } from './my-locker/components/my-qr/my-qr.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NavbarComponents } from './layout/navbar/navbar.component';
+import { footerComponents } from './layout/footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +36,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     MyLockerComponent,
     LockerComponent,
     MyQrComponent,
+    NavbarComponents,
+    footerComponents,
   ],
   imports: [
     CommonModule,
@@ -60,6 +65,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     CoreModule.forRoot(),
     SharedModule.forRoot(),
     AdminModule,
+
   ],
   providers: [
     AppConfig,
