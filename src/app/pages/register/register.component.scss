@@ -90,3 +90,8 @@ $form-sumbit-gradient-color-end:#004081 !default;
     align-self: center;
     margin-top: 2%;
 }
+.form-group label[data-required="true"]::after {
+    content: " *";
+    color: red; /* เปลี่ยนสีเครื่องหมาย * เป็นสีแดง */
+    margin-left: 2px; /* เพิ่มระยะห่างระหว่างชื่อฟิลด์และเครื่องหมาย * */
+}
