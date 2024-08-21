@@ -140,9 +140,11 @@ $form-sumbit-gradient-color-end:#004081 !default;
     }
 }
 @media (max-width: 600px) {
+    
     .register-container {
         flex-direction: column; /* ทำให้คอลัมน์เรียงตามแนวตั้ง */
         overflow-y: auto; 
+        overflow-x: hidden;
     }
 
     .left-panel, 
@@ -191,19 +193,18 @@ $form-sumbit-gradient-color-end:#004081 !default;
         font-size: 24px; 
     }
     .images-content{
-        font-size: 10px; 
+        font-size: 8px; 
     }
     .image-text{
         font-size: 30px; 
     }
 }
-
 @media (min-width: 375px) and (max-width: 600px) {
     .gradient-text {
         font-size: 32px; 
     }
     .images-content{
-        font-size: 20px; 
+        font-size: 15px; 
     }
     .image-text{
         font-size: 56px; 
