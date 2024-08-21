@@ -1,6 +1,11 @@
 <div class="register-container">
     <div class="left-panel">
         <img class="register-image" [src]="backgroundImagePath" alt="Register Image">
+        <div class="overlay-text">
+            <h1 class="image-text">Welcome to</h1>
+            <h2 class="gradient-text">Exzy Company</h2>
+            <p class="images-content">Let us get to know each before your arrival</p>
+        </div>
     </div>
     <div class="right-panel">
         <form class="right-panel-form">
@@ -16,7 +21,9 @@
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="example@example.com">
+                <!-- <input type="email" id="email" name="email" placeholder="example@example.com"> -->
+                <input type="email" id="email" name="email" placeholder="example@example.com"> <!-- input width น้อยกว่า 100% -->
+
             </div>
             <div class="form-group">
                 <label for="phone" data-required="true">Phone No.</label>
