@@ -22,17 +22,23 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+// ! BLOCK UI
+import { BloclUIComponents } from './layout/block-ui/block-ui.component';
+
+// ! FOOTER
+import { footerReducer } from './layout/footer/footer.reducer';
+import { footerComponents } from './layout/footer/footer.component';
 
 // ! COMPONENT PAGE
 import { NavbarComponents } from './layout/navbar/navbar.component';
-import { footerComponents } from './layout/footer/footer.component';
 import { PreRegisterComponents } from './pages/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponents,
     footerComponents,
-    PreRegisterComponents
+    PreRegisterComponents,
+    BloclUIComponents
   ],
   imports: [
     CommonModule,
@@ -59,6 +65,7 @@ import { PreRegisterComponents } from './pages/register/register.component';
     CoreModule.forRoot(),
     SharedModule.forRoot(),
     RxReactiveFormsModule,
+    StoreModule.forRoot({ footer: footerReducer }),
   ],
   providers: [
     AppConfig,

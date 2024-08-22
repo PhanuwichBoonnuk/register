@@ -16,10 +16,15 @@ $footer-background-color: #FFFF !default;
     align-items: center;
     font-size: 14px;
     color: #9E9E9E;
-    
+    margin-left: 50%;
     img {
       height: 20px;
       margin-left: 5px;
     }
   }
+  @media (max-width: 600px) {
+    .footer-content{
+      margin-left: 0px;
+    }
+  }  
 }

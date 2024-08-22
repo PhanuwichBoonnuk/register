@@ -1,4 +1,6 @@
-<div *ngIf="registerFlag" class="register-container">
+
+<app-block-ui [isBlocked]="isLoading"></app-block-ui>
+<div class="register-container">
     <div class="left-panel">
         <img class="register-image" [src]="backgroundImagePath" alt="Register Image">
         <div class="overlay-text">
@@ -8,7 +10,8 @@
         </div>
     </div>
     <div class="right-panel">
-        <form [formGroup]="registerForm" class="right-panel-form" (ngSubmit)="onSubmit()" #form="ngForm">
+        <form *ngIf="registerFlag" [formGroup]="registerForm" class="right-panel-form" (ngSubmit)="onSubmit()"
+            #form="ngForm">
             <h2>Visitor Pre-Register</h2>
             <h4>Visitor Information</h4>
             <div class="form-group">
@@ -54,5 +57,17 @@
             <div class="line"></div>
             <button type="submit" class="submit-button">Register</button>
         </form>
+
+        <div *ngIf="!registerFlag" class="right-panel-form"
+            style="text-align: center; padding: 50px;">
+            <div>
+                <img class="img-suecess-completed" [src]="successImagePath" alt="Register Image">
+            </div>
+            <h2 style="font-size: 24px; color: #4F4F4F;">Registration Completed</h2>
+            <p style="font-size: 16px; color: #8F8F8F;">ลงทะเบียนสำเร็จเรียบร้อยแล้ว คุณสามารถใช้ QR Code ในอีเมลเช็คอินเมื่อมาถึง</p>
+                <div class="line_completed_register"></div>
+                <button (click)="router_register()" type="submit" class="submit-button-register-completed">Register</button>
+            <div class="text-powerd">Powered by <img class="img-powered" [src]="logoImagePath" alt="Logo Image"></div>
+        </div>
     </div>
 </div>

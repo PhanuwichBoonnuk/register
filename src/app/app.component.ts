@@ -43,9 +43,7 @@ import { AppConfig } from '@config';
 import { HttpCustom } from '@core/http-custom';
 import { APPVERSION } from '@environments/version';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-// import { ConsentComponent } from '@shared/pdpa/consent/consent.component';
-// import { TermOfServicesComponent } from '@shared/pdpa/term-of-services/term-of-services.component';
-// import { PersonalInformationManagementComponent } from '@shared/pdpa/personal-information-management/personal-information-management.component';
+import { openFooter, closeFooter } from './layout/footer/footer.actions'; // ตรวจสอบให้แน่ใจว่าเส้นทางถูกต้อง
 
 @Component({
   selector: 'app-root',
@@ -254,30 +252,4 @@ export class AppComponent implements OnInit {
   isMobile() {
     return this.utilService.isMobile();
   }
-
-//   openCookieConsent() {
-//     if (!this.bsModalRef) {
-//       this.bsModalRef = this.modalService.show(ConsentComponent, {
-//         keyboard: true,
-//         backdrop: 'static'
-//       })
-//     }
-//   }
-
-//   openTermOfService() {
-//     this.modalService.show(TermOfServicesComponent, {
-//       keyboard: false,
-//       backdrop: 'static',
-//       class: 'modal-lg modal-dialog-centered modal-fullscreen-md-down'
-//     })
-//   }
-
-//   openPeronalInformation() {
-//     this.modalService.show(PersonalInformationManagementComponent, {
-//       keyboard: false,
-//       backdrop: 'static',
-//       class: 'modal-xl modal-dialog-centered'
-//     })
-//   }
-
 }

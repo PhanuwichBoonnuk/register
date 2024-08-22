@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AuthState } from '@core/store/auth/auth.reducer';
+import { openFooter, closeFooter } from '../../layout/footer/footer.actions'; // ตรวจสอบให้แน่ใจว่าเส้นทางถูกต้อง
 
 @Component({
   selector: 'app-pre-register',
@@ -8,19 +11,42 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PreRegisterComponents implements OnInit {
   backgroundImagePath: string;
+  successImagePath:string;
+  logoImagePath:string;
   registerFlag: boolean;
   registerForm: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  isLoading:boolean;
+  constructor(
+    private fb: FormBuilder,
+    private Store: Store<AuthState>,
+
+  ) {}
 
   ngOnInit(): void {
-    this.initializeForm();
     this.openFistPage();
   }
 
-
   async openFistPage() {
-    this.backgroundImagePath = './config/images/image-register.png';
+    const { open, close } = this.loading();
+    open();
     this.registerFlag = true;
+    this.initializeForm();
+    this.successImagePath = '/assets/images/success.png';
+    this.backgroundImagePath = './config/images/image-register.png';
+    this.logoImagePath = './config/images/logo-brand.png';
+    this.Store.dispatch(openFooter());
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    close();
+  }
+  async router_register(){
+    await this.openFistPage();
+  }
+  async captCha(validateValue){
+  try {
+    
+  } catch (e) {
+   console.log(e);
+  }
   }
   initializeForm(): void {
     const { formatIdPassport, formatPhoneNo } = this.formatValidate();
@@ -49,7 +75,6 @@ export class PreRegisterComponents implements OnInit {
       }
     });
   }
-
   formatValidate() {
     const formatIdPassport = (value: string): string => {
       const cleanValue = value.replace(/\D/g, ''); 
@@ -68,14 +93,29 @@ export class PreRegisterComponents implements OnInit {
     };
     return { formatIdPassport, formatPhoneNo };
   }
-
-  onSubmit(): void {
+  loading(){
+    const open = () => {
+      this.isLoading = true;
+    }
+    const close = () => {
+      this.isLoading = false;
+    }
+    return {open,close}
+  }
+  async onSubmit(): Promise<void> {
+    const { open, close } = this.loading();
+    open();
+    await new Promise(resolve => setTimeout(resolve, 1000));
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
-      console.log('Form is not valid');
+      close();
+      return
     } else {
-      console.log(this.registerForm.value);
-
+      await this.captCha(this.registerForm);
+      // ! ไม่ใช้ให้เอาออก
+      this.registerFlag = false;
+      this.Store.dispatch(closeFooter());
+      close();
     }
   }
 }
