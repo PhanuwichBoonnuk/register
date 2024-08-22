@@ -83,31 +83,6 @@
                   "output": "/config"
                 }
               ]
-            },
-            "net": {
-              "outputPath": "dist/net",
-              "baseHref": "/",
-              "deployUrl": "/",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/sites/net/environments/environment.prod.ts"
-                }
-              ],
-              "stylePreprocessorOptions": {
-                "includePaths": [
-                  "src/styles-default",
-                  "src/sites/net"
-                ]
-              },
-              "assets": [
-                "src/assets",
-                {
-                  "glob": "**/*",
-                  "input": "src/sites/net/config",
-                  "output": "/config"
-                }
-              ]
             }
           }
         },
@@ -119,9 +94,6 @@
           "configurations": {
             "Exzy": {
               "browserTarget": "SmartLocker-Web:build:Exzy"
-            },
-            "net": {
-              "browserTarget": "SmartLocker-Web:build:net"
             }
           }
         },
