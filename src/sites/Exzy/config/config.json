@@ -1,5 +1,10 @@
 {
   "title": "Exzy - PreRegister",
+  "registerPage": {
+    "Header": "Welcome to",
+    "content": "Exzy Company",
+    "footer": "Let us get to know each before your arrival"
+  },
   "apiUrlData": "/data",
   "apiUrl": "/data/lockers",
   "imageUrl": "/data/lockers",

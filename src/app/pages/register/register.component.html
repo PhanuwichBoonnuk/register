@@ -1,73 +1,84 @@
 
 <app-block-ui [isBlocked]="isLoading"></app-block-ui>
+
 <div class="register-container">
     <div class="left-panel">
         <img class="register-image" [src]="backgroundImagePath" alt="Register Image">
         <div class="overlay-text">
-            <h1 class="image-text">Welcome to</h1>
-            <h2 class="gradient-text">Exzy Company</h2>
-            <p class="images-content">Let us get to know each before your arrival</p>
+            <h1 class="image-text">  {{registerPage.Header}}</h1>
+            <h2 class="gradient-text">{{registerPage.content}}</h2>
+            <p class="images-content">{{registerPage.footer}}</p>
         </div>
     </div>
     <div class="right-panel">
-        <form *ngIf="registerFlag" [formGroup]="registerForm" class="right-panel-form" (ngSubmit)="onSubmit()"
-            #form="ngForm">
-            <h2>Visitor Pre-Register</h2>
-            <h4>Visitor Information</h4>
-            <div class="form-group">
-                <label for="first-name" data-required="true">First Name</label>
-                <input type="text" id="first-name" formControlName="firstName" placeholder="First Name"
-                    [ngClass]="{'is-invalid': registerForm.controls.firstName.invalid && (registerForm.controls.firstName.touched || form.submitted)}">
-            </div>
-            <div class="form-group">
-                <label for="last-name" data-required="true">Last Name</label>
-                <input type="text" id="last-name" formControlName="lastName" placeholder="Last Name"
-                    [ngClass]="{'is-invalid': registerForm.controls.lastName.invalid && (registerForm.controls.lastName.touched || form.submitted)}">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" formControlName="email" placeholder="example@example.com">
-            </div>
-            <div class="form-group">
-                <label for="phone" data-required="true">Phone No.</label>
-                <input maxlength="12" type="tel" id="phone" formControlName="phone" placeholder="123-456-7890"
-                    [ngClass]="{'is-invalid': registerForm.controls.phone.invalid && (registerForm.controls.phone.touched || form.submitted)}">
-            </div>
-            <div class="form-group">
-                <label for="company">Company</label>
-                <input type="text" id="company" formControlName="company" placeholder="Company Name">
-            </div>
-            <div class="form-group">
-                <label for="id-passport" data-required="true">ID No./passport</label>
-                <input maxlength="17" type="text" id="id-passport" formControlName="idPassport"
-                    placeholder="1-1008-007-31-33-3"
-                    [ngClass]="{'is-invalid': registerForm.controls.idPassport.invalid && (registerForm.controls.idPassport.touched || form.submitted)}">
-            </div>
-            <div class="form-group">
-                <label for="license-plate">License Plate No.</label>
-                <input type="text" id="license-plate" formControlName="licensePlate" placeholder="ABC-1234">
-            </div>
-            <div>
-                <h4>Visit Detail</h4>
-            </div>
-            <div class="form-group">
-                <label for="host-email">Host Email</label>
-                <input type="email" id="host-email" formControlName="hostEmail" placeholder="example@example.com">
-            </div>
-            <div class="line"></div>
-            <button type="submit" class="submit-button">Register</button>
+        <form *ngIf="registerFlag" [formGroup]="registerForm" class="right-panel-form" (ngSubmit)="onSubmit()" #form="ngForm">
+          <h2>{{ 'registerPage.Header' | translate }}</h2>
+          <h4>{{ 'form.visitDetail' | translate }}</h4>
+    
+          <div class="form-group">
+            <label for="first-name" data-required="true">{{ 'form.firstName' | translate }}</label>
+            <input type="text" id="first-name" formControlName="firstName" placeholder="{{ 'form.firstName' | translate }}"
+              [ngClass]="{'is-invalid': registerForm.controls.firstName.invalid && (registerForm.controls.firstName.touched || form.submitted)}">
+          </div>
+          
+          <div class="form-group">
+            <label for="last-name" data-required="true">{{ 'form.lastName' | translate }}</label>
+            <input type="text" id="last-name" formControlName="lastName" placeholder="{{ 'form.lastName' | translate }}"
+              [ngClass]="{'is-invalid': registerForm.controls.lastName.invalid && (registerForm.controls.lastName.touched || form.submitted)}">
+          </div>
+    
+          <div class="form-group">
+            <label for="email">{{ 'form.email' | translate }}</label>
+            <input type="email" id="email" formControlName="email" placeholder="example@example.com">
+          </div>
+    
+          <div class="form-group">
+            <label for="phone" data-required="true">{{ 'form.phone' | translate }}</label>
+            <input maxlength="12" type="tel" id="phone" formControlName="phone" placeholder="123-456-7890"
+              [ngClass]="{'is-invalid': registerForm.controls.phone.invalid && (registerForm.controls.phone.touched || form.submitted)}">
+          </div>
+    
+          <div class="form-group">
+            <label for="company">{{ 'form.company' | translate }}</label>
+            <input type="text" id="company" formControlName="company" placeholder="{{ 'form.company' | translate }}">
+          </div>
+    
+          <div class="form-group">
+            <label for="id-passport" data-required="true">{{ 'form.idPassport' | translate }}</label>
+            <input maxlength="17" type="text" id="id-passport" formControlName="idPassport"
+              placeholder="1-1008-007-31-33-3"
+              [ngClass]="{'is-invalid': registerForm.controls.idPassport.invalid && (registerForm.controls.idPassport.touched || form.submitted)}">
+          </div>
+    
+          <div class="form-group">
+            <label for="license-plate">{{ 'form.licensePlate' | translate }}</label>
+            <input type="text" id="license-plate" formControlName="licensePlate" placeholder="ABC-1234">
+          </div>
+          
+          <div>
+            <h4>{{ 'form.visitDetail' | translate }}</h4>
+          </div>
+    
+          <div class="form-group">
+            <label for="host-email">{{ 'form.hostEmail' | translate }}</label>
+            <input type="email" id="host-email" formControlName="hostEmail" placeholder="example@example.com">
+          </div>
+          
+          <div class="line"></div>
+          <button type="submit" class="submit-button">{{ 'form.registerButton' | translate }}</button>
         </form>
-
-        <div *ngIf="!registerFlag" class="right-panel-form"
-            style="text-align: center; padding: 50px;">
-            <div>
-                <img class="img-suecess-completed" [src]="successImagePath" alt="Register Image">
-            </div>
-            <h2 style="font-size: 24px; color: #4F4F4F;">Registration Completed</h2>
-            <p style="font-size: 16px; color: #8F8F8F;">ลงทะเบียนสำเร็จเรียบร้อยแล้ว คุณสามารถใช้ QR Code ในอีเมลเช็คอินเมื่อมาถึง</p>
-                <div class="line_completed_register"></div>
-                <button (click)="router_register()" type="submit" class="submit-button-register-completed">Register</button>
-            <div class="text-powerd">Powered by <img class="img-powered" [src]="logoImagePath" alt="Logo Image"></div>
+    
+        <div *ngIf="!registerFlag" class="right-panel-form" style="text-align: center; padding: 50px;">
+          <div>
+            <img class="img-success-completed" [src]="successImagePath" alt="Register Image">
+          </div>
+          <h2 style="font-size: 24px; color: #4F4F4F;">{{ 'form.registrationCompleted' | translate }}</h2>
+          <p style="font-size: 16px; color: #8F8F8F;">{{ 'form.registrationSuccessMessage' | translate }}</p>
+          
+          <div class="line_completed_register"></div>
+          <button (click)="router_register()" type="submit" class="submit-button-register-completed">{{ 'form.registerButton' | translate }}</button>
+          
+          <div class="text-powered">{{ 'form.poweredBy' | translate }} <img class="img-powered" [src]="logoImagePath" alt="Logo Image"></div>
         </div>
+      </div>
     </div>
-</div>

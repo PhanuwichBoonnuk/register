@@ -1,3 +1,4 @@
+import { AppConfig } from '@config';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -16,9 +17,14 @@ export class PreRegisterComponents implements OnInit {
   registerFlag: boolean;
   registerForm: FormGroup;
   isLoading:boolean;
+
+  // !TEXT HTML
+  registerPage = this.config.getConfig('registerPage');
+
   constructor(
     private fb: FormBuilder,
     private Store: Store<AuthState>,
+    private config: AppConfig,
 
   ) {}
 
@@ -118,4 +124,5 @@ export class PreRegisterComponents implements OnInit {
       close();
     }
   }
+  
 }

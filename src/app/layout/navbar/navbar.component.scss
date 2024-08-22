@@ -1,6 +1,8 @@
 @import "_variable";
 $navbar-background-color: #FFFF !default;
-
+.dropdown {
+  margin-left: auto;
+}
 .navbar {
     background-color: $navbar-background-color;
     width: 100%;  
