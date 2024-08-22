@@ -1,18 +1,30 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-pre-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  styleUrls: ['./register.component.scss']
 })
 export class PreRegisterComponents implements OnInit {
   backgroundImagePath: string;
+  registerFlag: boolean;
 
-  constructor() {}
+  constructor(private cdr: ChangeDetectorRef, private zone: NgZone) {}
 
-  ngOnInit(): void {
-    this.backgroundImagePath = './config/images/image-register.png';
+  async ngOnInit(): Promise<void> {
+    await this.openFistPage();
   }
 
+  async openFistPage() {
+    try {
+      this.zone.run(() => {
+        this.backgroundImagePath = './config/images/image-register.png';
+        this.registerFlag = true;
+        this.cdr.detectChanges();
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }

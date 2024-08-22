@@ -59,7 +59,7 @@ $form-sumbit-gradient-color-end:#004081 !default;
 }
 
 .form-group {
-    margin-bottom: 5px; 
+    margin-bottom: 10px; 
 }
 
 .form-group label {
@@ -76,9 +76,10 @@ $form-sumbit-gradient-color-end:#004081 !default;
     box-sizing: border-box; 
 }
 .line {
-    margin-top: 1%;
+    margin-top: 4%;
     width: 100%;    
-    border-top: 1px solid black; 
+    // border-top: 1px solid black; 
+    border: 1px solid #D0D6DF
 }
 .submit-button {
     width: 100%;
@@ -91,7 +92,7 @@ $form-sumbit-gradient-color-end:#004081 !default;
     font-size: 14px;
     cursor: pointer;
     align-self: center;
-    margin-top: 2%;
+    margin-top: 3%;
 }
 .form-group label[data-required="true"]::after {
     content: " *";
@@ -136,7 +137,8 @@ $form-sumbit-gradient-color-end:#004081 !default;
 @media (max-height: 877px) {
     .right-panel-form {
         max-height: 100vh; 
-        overflow-y: auto; 
+        overflow-y: auto;  
+        overflow-x: hidden;
     }
 }
 @media (max-width: 600px) {
@@ -216,4 +218,8 @@ $form-sumbit-gradient-color-end:#004081 !default;
     }
 }
 
+.hidden {
+    display: none;
+  }
+  
 

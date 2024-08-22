@@ -1,4 +1,4 @@
-<div class="register-container">
+<div *ngIf="registerFlag" class="register-container">
     <div class="left-panel">
         <img class="register-image" [src]="backgroundImagePath" alt="Register Image">
         <div class="overlay-text">
@@ -21,8 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <!-- <input type="email" id="email" name="email" placeholder="example@example.com"> -->
-                <input type="email" id="email" name="email" placeholder="example@example.com"> <!-- input width น้อยกว่า 100% -->
+                <input type="email" id="email" name="email" placeholder="example@example.com">
 
             </div>
             <div class="form-group">

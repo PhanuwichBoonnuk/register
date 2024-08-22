@@ -11,6 +11,6 @@ export class NavbarComponents implements OnInit {
 
   ngOnInit(): void {
     // Logic to execute when the component initializes
-    console.log('app-navbar');
+    // console.log('app-navbar');
   }
 }
