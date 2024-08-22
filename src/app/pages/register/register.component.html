@@ -8,44 +8,48 @@
         </div>
     </div>
     <div class="right-panel">
-        <form class="right-panel-form">
+        <form [formGroup]="registerForm" class="right-panel-form" (ngSubmit)="onSubmit()" #form="ngForm">
             <h2>Visitor Pre-Register</h2>
             <h4>Visitor Information</h4>
             <div class="form-group">
                 <label for="first-name" data-required="true">First Name</label>
-                <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+                <input type="text" id="first-name" formControlName="firstName" placeholder="First Name"
+                    [ngClass]="{'is-invalid': registerForm.controls.firstName.invalid && (registerForm.controls.firstName.touched || form.submitted)}">
             </div>
             <div class="form-group">
                 <label for="last-name" data-required="true">Last Name</label>
-                <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+                <input type="text" id="last-name" formControlName="lastName" placeholder="Last Name"
+                    [ngClass]="{'is-invalid': registerForm.controls.lastName.invalid && (registerForm.controls.lastName.touched || form.submitted)}">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="example@example.com">
-
+                <input type="email" id="email" formControlName="email" placeholder="example@example.com">
             </div>
             <div class="form-group">
                 <label for="phone" data-required="true">Phone No.</label>
-                <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required>
+                <input maxlength="12" type="tel" id="phone" formControlName="phone" placeholder="123-456-7890"
+                    [ngClass]="{'is-invalid': registerForm.controls.phone.invalid && (registerForm.controls.phone.touched || form.submitted)}">
             </div>
             <div class="form-group">
                 <label for="company">Company</label>
-                <input type="text" id="company" name="company" placeholder="Company Name">
+                <input type="text" id="company" formControlName="company" placeholder="Company Name">
             </div>
             <div class="form-group">
                 <label for="id-passport" data-required="true">ID No./passport</label>
-                <input type="text" id="id-passport" name="id-passport" placeholder="1-1008-007-31-33-3" required>
+                <input maxlength="17" type="text" id="id-passport" formControlName="idPassport"
+                    placeholder="1-1008-007-31-33-3"
+                    [ngClass]="{'is-invalid': registerForm.controls.idPassport.invalid && (registerForm.controls.idPassport.touched || form.submitted)}">
             </div>
             <div class="form-group">
                 <label for="license-plate">License Plate No.</label>
-                <input type="text" id="license-plate" name="license-plate" placeholder="ABC-1234">
+                <input type="text" id="license-plate" formControlName="licensePlate" placeholder="ABC-1234">
             </div>
             <div>
                 <h4>Visit Detail</h4>
             </div>
             <div class="form-group">
                 <label for="host-email">Host Email</label>
-                <input type="email" id="host-email" name="host-email" placeholder="example@example.com">
+                <input type="email" id="host-email" formControlName="hostEmail" placeholder="example@example.com">
             </div>
             <div class="line"></div>
             <button type="submit" class="submit-button">Register</button>

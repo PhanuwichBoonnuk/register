@@ -2,8 +2,8 @@
 $form-register-background-color: #FFFF !default;
 $form-register-hearder: #FFFF !default;
 $form-register-title: #FFFF !default;
-$form-sumbit-gradient-color-start:#66C5C5 !default; 
-$form-sumbit-gradient-color-end:#004081 !default; 
+$form-sumbit-gradient-color-start: #66C5C5 !default;
+$form-sumbit-gradient-color-end: #004081 !default;
 
 .register-container {
     display: flex;
@@ -38,11 +38,11 @@ $form-sumbit-gradient-color-end:#004081 !default;
 
 .right-panel-form {
     width: 100%;
-    height: 100%; 
-    padding: 5%; 
-    border-radius: 8px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    box-sizing: border-box; 
+    height: 100%;
+    padding: 5%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
 }
@@ -59,7 +59,7 @@ $form-sumbit-gradient-color-end:#004081 !default;
 }
 
 .form-group {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
 .form-group label {
@@ -69,21 +69,23 @@ $form-sumbit-gradient-color-end:#004081 !default;
 }
 
 .form-group input {
-    width: 100%; 
+    width: 100%;
     height: 36px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
+
 .line {
     margin-top: 4%;
-    width: 100%;    
+    width: 100%;
     // border-top: 1px solid black; 
     border: 1px solid #D0D6DF
 }
+
 .submit-button {
     width: 100%;
-    max-width: 400px; 
+    max-width: 400px;
     padding: 16px;
     background: linear-gradient(90deg, $form-sumbit-gradient-color-start, $form-sumbit-gradient-color-end);
     border: none;
@@ -94,28 +96,34 @@ $form-sumbit-gradient-color-end:#004081 !default;
     align-self: center;
     margin-top: 3%;
 }
+
 .form-group label[data-required="true"]::after {
     content: " *";
-    color: red; 
-    margin-left: 2px; 
+    color: red;
+    margin-left: 2px;
 }
+
 // ! Text on Images
 .overlay-text {
     position: absolute;
     top: 50%;
     left: 55%;
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
     width: 100%;
     color: white;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start; 
+    align-items: flex-start;
     text-align: center;
 }
 
-.overlay-text h1, .overlay-text h2, .overlay-text p, .overlay-text h3, .overlay-text ul {
+.overlay-text h1,
+.overlay-text h2,
+.overlay-text p,
+.overlay-text h3,
+.overlay-text ul {
     margin: 0;
     padding: 10px 0;
 }
@@ -124,62 +132,78 @@ $form-sumbit-gradient-color-end:#004081 !default;
     color: #66C5C5;
     text-decoration: underline;
 }
+
 .gradient-text {
-    font-size: 72px; 
-    background-image: linear-gradient(90deg, #66C5C5, #004081); 
-    -webkit-background-clip: text; 
-    color: transparent; 
+    font-size: 72px;
+    background-image: linear-gradient(90deg, #66C5C5, #004081);
+    -webkit-background-clip: text;
+    color: transparent;
 }
-.image-text{
-    font-size: 36px; 
+
+.image-text {
+    font-size: 36px;
 }
+
 // !Media query
 @media (max-height: 877px) {
     .right-panel-form {
-        max-height: 100vh; 
-        overflow-y: auto;  
+        max-height: 100vh;
+        overflow-y: auto;
         overflow-x: hidden;
     }
 }
+
 @media (max-width: 600px) {
-    
+
     .register-container {
-        flex-direction: column; /* ทำให้คอลัมน์เรียงตามแนวตั้ง */
-        overflow-y: auto; 
+        flex-direction: column;
+        /* ทำให้คอลัมน์เรียงตามแนวตั้ง */
+        overflow-y: auto;
         overflow-x: hidden;
     }
 
-    .left-panel, 
+    .left-panel,
     .right-panel {
-        width: 100%; /* ทำให้ทั้งสอง panel เต็มความกว้างของหน้าจอ */
-        height: auto; /* ปรับความสูงอัตโนมัติตามเนื้อหาภายใน */
-        overflow: visible; /* แสดงเนื้อหาที่เกิน */
+        width: 100%;
+        /* ทำให้ทั้งสอง panel เต็มความกว้างของหน้าจอ */
+        height: auto;
+        /* ปรับความสูงอัตโนมัติตามเนื้อหาภายใน */
+        overflow: visible;
+        /* แสดงเนื้อหาที่เกิน */
     }
 
     .register-image {
-        width: 100%; /* ทำให้รูปภาพขยายเต็มความกว้างของ panel */
-        height: auto; /* ปรับความสูงตามสัดส่วนของรูปภาพ */
-        display: block; /* ยังคงแสดงรูปภาพ */
-        object-fit: cover; /* ปรับรูปภาพให้พอดีกับ container */
+        width: 100%;
+        /* ทำให้รูปภาพขยายเต็มความกว้างของ panel */
+        height: auto;
+        /* ปรับความสูงตามสัดส่วนของรูปภาพ */
+        display: block;
+        /* ยังคงแสดงรูปภาพ */
+        object-fit: cover;
+        /* ปรับรูปภาพให้พอดีกับ container */
     }
 
     .right-panel-form {
-        padding: 10%; /* เพิ่ม padding เพื่อความสมดุลของเนื้อหา */
+        padding: 10%;
+        /* เพิ่ม padding เพื่อความสมดุลของเนื้อหา */
     }
 
     .submit-button {
-        max-width: 100%; /* ปรับขนาดปุ่มให้เต็มความกว้าง */
+        max-width: 100%;
+        /* ปรับขนาดปุ่มให้เต็มความกว้าง */
     }
+
     .right-panel-form h2 {
         font-size: 24px;
         color: $form-register-hearder;
     }
-    
+
     .right-panel-form h4 {
         margin-top: 2%;
         font-size: 18px;
         color: $form-register-title;
     }
+
     // .gradient-text {
     //     font-size: 24px; 
     // }
@@ -190,36 +214,57 @@ $form-sumbit-gradient-color-end:#004081 !default;
     //     font-size: 32px; 
     // }
 }
+
 @media (max-width: 375px) {
     .gradient-text {
-        font-size: 24px; 
+        font-size: 24px;
     }
-    .images-content{
-        font-size: 8px; 
+
+    .images-content {
+        font-size: 8px;
     }
-    .image-text{
-        font-size: 30px; 
+
+    .image-text {
+        font-size: 30px;
     }
 }
+
 @media (min-width: 375px) and (max-width: 600px) {
     .gradient-text {
-        font-size: 32px; 
+        font-size: 32px;
     }
-    .images-content{
-        font-size: 15px; 
+
+    .images-content {
+        font-size: 15px;
     }
-    .image-text{
-        font-size: 56px; 
+
+    .image-text {
+        font-size: 56px;
     }
 }
+
 @media (min-width: 600px) and (max-width: 1140px) {
     .gradient-text {
-        font-size: 46px; 
+        font-size: 46px;
     }
 }
 
-.hidden {
-    display: none;
-  }
-  
+input.is-invalid {
+    border: 1px solid red !important;
+    border-radius: 4px;
+    padding: 0.375rem 0.75rem;
+    background-color: transparent;
+}
 
+input.is-invalid:focus {
+    outline: none;
+    border-color: red;
+    box-shadow: none;
+}
+
+small.text-danger {
+    color: red;
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+    display: block;
+}

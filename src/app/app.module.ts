@@ -5,7 +5,7 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { AppRoutingModule } from './router/app-routing.module';
 import { AppComponent } from './app.component';
 import {
-  TranslateCompiler,
+TranslateCompiler,
   TranslateLoader,
   TranslateModule,
 } from '@ngx-translate/core';
@@ -21,7 +21,9 @@ import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+
+// ! COMPONENT PAGE
 import { NavbarComponents } from './layout/navbar/navbar.component';
 import { footerComponents } from './layout/footer/footer.component';
 import { PreRegisterComponents } from './pages/register/register.component';
@@ -40,7 +42,6 @@ import { PreRegisterComponents } from './pages/register/register.component';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    BsDatepickerModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -57,6 +58,7 @@ import { PreRegisterComponents } from './pages/register/register.component';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     CoreModule.forRoot(),
     SharedModule.forRoot(),
+    RxReactiveFormsModule,
   ],
   providers: [
     AppConfig,

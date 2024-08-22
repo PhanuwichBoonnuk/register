@@ -23,6 +23,7 @@
     "@ngrx/store": "^11.0.0",
     "@ngrx/store-devtools": "^11.0.1",
     "@ngx-translate/core": "^13.0.0",
+    "@rxweb/reactive-form-validators": "^1.9.8",
     "angularx-qrcode": "^10.0.12",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.0.2",
