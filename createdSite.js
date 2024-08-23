@@ -79,17 +79,17 @@ async function updateAngularJson(siteName, baseHref, deployUrl) {
 
   const newServeConfig = {
     [siteName]: {
-      "browserTarget": `SmartLocker-Web:build:${siteName}`
+      "browserTarget": `pre-register-Web:build:${siteName}`
     }
   };
 
-  fileData.projects['SmartLocker-Web'].architect.build.configurations = {
-    ...fileData.projects['SmartLocker-Web'].architect.build.configurations,
+  fileData.projects['pre-register-Web'].architect.build.configurations = {
+    ...fileData.projects['pre-register-Web'].architect.build.configurations,
     ...newBuildConfig
   };
 
-  fileData.projects['SmartLocker-Web'].architect.serve.configurations = {
-    ...fileData.projects['SmartLocker-Web'].architect.serve.configurations,
+  fileData.projects['pre-register-Web'].architect.serve.configurations = {
+    ...fileData.projects['pre-register-Web'].architect.serve.configurations,
     ...newServeConfig
   };
 
