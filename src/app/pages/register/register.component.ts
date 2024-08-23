@@ -57,10 +57,10 @@ export class PreRegisterComponents implements OnInit {
   initializeForm(): void {
     const { formatIdPassport, formatPhoneNo } = this.formatValidate();
     this.registerForm = this.fb.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-Zก-๙]+$/)]], 
+      lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Zก-๙]+$/)]],
       email: [''], 
-      phone: ['', [Validators.required, Validators.pattern(/^\d{3}-\d{3}-\d{4}$/)]], // Phone number format: 123-456-7890
+      phone: ['', [Validators.required, Validators.pattern(/^\d{3}-\d{3}-\d{4}$/)]], 
       company: [''],
       idPassport: ['', [Validators.required, Validators.pattern(/^\d-\d{4}-\d{5}-\d{2}-\d$/)]], 
       licensePlate: [''],
