@@ -18,5 +18,8 @@
     "registrationCompleted": "Registration Completed",
     "registrationSuccessMessage": "Registration completed successfully. You can use the QR code in your email to check in upon arrival.",
     "poweredBy": "Powered by"
+  },
+  "captcha": {
+    "placeholder": "Type the symbols from the image"
   }
 }

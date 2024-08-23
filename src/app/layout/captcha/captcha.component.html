@@ -12,7 +12,7 @@
       [(ngModel)]="captch_input" 
       name="captcha" 
       [ngClass]="{'is-invalid': !isCaptchaValid}" 
-      placeholder="Type the symbols from the image" 
+      placeholder="{{ 'captcha.placeholder' | translate }}" 
       class="captcha-input">
     
     </div>

@@ -18,5 +18,8 @@
     "registrationCompleted": "การลงทะเบียนเสร็จสมบูรณ์",
     "registrationSuccessMessage": "ลงทะเบียนสำเร็จเรียบร้อยแล้ว คุณสามารถใช้ QR Code ในอีเมลเช็คอินเมื่อมาถึง",
     "poweredBy": "ขับเคลื่อนโดย"
+  },
+  "captcha": {
+    "placeholder": "กรอกสัญลักษณ์จากภาพ"
   }
 }
