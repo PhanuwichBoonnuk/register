@@ -41,6 +41,7 @@
     "ngx-perfect-scrollbar": "^10.1.0",
     "ngx-translate-messageformat-compiler": "^4.9.0",
     "ngx-translate-multi-http-loader": "^3.0.0",
+    "particles.js": "^2.0.0",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
     "primeng": "^10.0.3",

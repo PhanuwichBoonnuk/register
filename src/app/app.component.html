@@ -1,9 +1,9 @@
 <div class="app-container">
-  <app-navbar></app-navbar>
+  <app-navbar *ngIf="!isErrorPage"></app-navbar>
   <div class="content">
     <router-outlet></router-outlet>
   </div>
-  <app-footer></app-footer>
+  <app-footer *ngIf="!isErrorPage"></app-footer>
 </div>
 
 <div *ngIf="isDev" class="is-dev text-center font-weight-bold">

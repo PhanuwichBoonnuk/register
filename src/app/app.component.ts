@@ -88,6 +88,7 @@ export class AppComponent implements OnInit {
 
   profile$: Observable<any>;
   scopes$: Observable<any>;
+  isErrorPage: boolean = false;
 
   otherLinkUrl = this.config.getConfig('otherLinkUrl');
   otherLinkLabel = this.config.getConfig('otherLinkLabel');
@@ -160,26 +161,12 @@ export class AppComponent implements OnInit {
         }
       }
     });
-
-    // if (this.cookieService.get('access-token')) {
-    //   this.userService.getProfile().subscribe(
-    //     (response: any) => {
-    //       this.authStore.dispatch(
-    //         new Login(response.profile, response.profile.lockerScopes)
-    //       );
-    //     },
-    //     (error) => {}
-    //   );
-    // }
-
-    // this.profile$.subscribe(auth => {
-    //   if (this.enablePDPA && auth?.pdpaData?.acceptDataConsent === false) this.openCookieConsent();
-    // });
-
-    // if (this.enablePDPA) {
-    //   this.checkCookieConsent();
-    // }
-
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // ตรวจสอบว่าคอมโพเนนต์ปัจจุบันคือ ErrorPageComponent หรือไม่
+        this.isErrorPage = this.router.url === '/error';
+      }
+    });
   }
 
   navigationInterceptor(event: RouterEvent): void {
@@ -252,4 +239,5 @@ export class AppComponent implements OnInit {
   isMobile() {
     return this.utilService.isMobile();
   }
+
 }
