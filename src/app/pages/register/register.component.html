@@ -11,8 +11,8 @@
         </div>
     </div>
     <div class="right-panel">
-        <form *ngIf="registerFlag" [formGroup]="registerForm" class="right-panel-form" (ngSubmit)="onSubmit()" #form="ngForm">
-          <h2>{{ 'registerPage.Header' | translate }}</h2>
+      <form *ngIf="registerFlag" [formGroup]="registerForm" class="right-panel-form" (ngSubmit)="onSubmit()" (keydown.enter)="onSubmit()" #form="ngForm">
+        <h2>{{ 'registerPage.Header' | translate }}</h2>
           <h4>{{ 'form.visitDetail' | translate }}</h4>
     
           <div class="form-group">
