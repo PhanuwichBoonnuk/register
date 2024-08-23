@@ -1,0 +1,20 @@
+<div class="captcha-container {{ config.cssClass }}">
+    <div class="captcha-content">
+      <div class="captcha-box">
+        <canvas class="canvas" id="captchaCanvas" width="200" height="60"></canvas>
+        <div class="captcha-actions">
+          <button class="captcha-btn" type="button" (click)="manualReloadCaptcha()">&#x21bb;</button>
+        </div>
+      </div>
+      <input 
+      [maxlength]="maxLengthInput" 
+      type="text" 
+      [(ngModel)]="captch_input" 
+      name="captcha" 
+      [ngClass]="{'is-invalid': !isCaptchaValid}" 
+      placeholder="Type the symbols from the image" 
+      class="captcha-input">
+    
+    </div>
+  </div>
+  

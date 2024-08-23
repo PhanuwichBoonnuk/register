@@ -1,9 +1,10 @@
 import { AppConfig } from '@config';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AuthState } from '@core/store/auth/auth.reducer';
 import { openFooter, closeFooter } from '../../layout/footer/footer.actions'; // ตรวจสอบให้แน่ใจว่าเส้นทางถูกต้อง
+import { CaptchaComponent } from '../../layout/captcha/captcha.component'; // นำเข้า CaptchaComponent
 
 @Component({
   selector: 'app-pre-register',
@@ -21,6 +22,7 @@ export class PreRegisterComponents implements OnInit {
   // !TEXT HTML
   registerPage = this.config.getConfig('registerPage');
 
+  @ViewChild(CaptchaComponent) captchaComponent!: CaptchaComponent;
   constructor(
     private fb: FormBuilder,
     private Store: Store<AuthState>,
@@ -46,13 +48,6 @@ export class PreRegisterComponents implements OnInit {
   }
   async router_register(){
     await this.openFistPage();
-  }
-  async captCha(validateValue){
-  try {
-    
-  } catch (e) {
-   console.log(e);
-  }
   }
   initializeForm(): void {
     const { formatIdPassport, formatPhoneNo } = this.formatValidate();
@@ -108,21 +103,32 @@ export class PreRegisterComponents implements OnInit {
     }
     return {open,close}
   }
+  async captCha(): Promise<boolean> {
+    const isCaptchaValid = this.captchaComponent.checkCaptcha();
+    if (!isCaptchaValid) {
+      this.captchaComponent.reloadCaptchaOnFail();
+    }
+    return isCaptchaValid;
+  }
+  
+  
   async onSubmit(): Promise<void> {
     const { open, close } = this.loading();
     open();
+  
     await new Promise(resolve => setTimeout(resolve, 1000));
-    if (this.registerForm.invalid) {
-      this.registerForm.markAllAsTouched();
-      close();
-      return
-    } else {
-      await this.captCha(this.registerForm);
-      // ! ไม่ใช้ให้เอาออก
+  
+    const checkCaptCha = await this.captCha();
+  
+    if (checkCaptCha && !this.registerForm.invalid) {
       this.registerFlag = false;
       this.Store.dispatch(closeFooter());
-      close();
+    } else {
+      this.registerForm.markAllAsTouched();
+      this.captchaComponent.reloadCaptchaOnFail();
     }
+    close();
   }
+  
   
 }

@@ -22,23 +22,28 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+// ! CAPTCHA
+import { RecaptchaModule } from 'ng-recaptcha';
+
 // ! BLOCK UI
 import { BloclUIComponents } from './layout/block-ui/block-ui.component';
-
 // ! FOOTER
 import { footerReducer } from './layout/footer/footer.reducer';
 import { footerComponents } from './layout/footer/footer.component';
-
 // ! COMPONENT PAGE
 import { NavbarComponents } from './layout/navbar/navbar.component';
 import { PreRegisterComponents } from './pages/register/register.component';
+import { CaptchaComponent } from './layout/captcha/captcha.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponents,
     footerComponents,
     PreRegisterComponents,
-    BloclUIComponents
+    BloclUIComponents,
+    CaptchaComponent
   ],
   imports: [
     CommonModule,
@@ -66,6 +71,7 @@ import { PreRegisterComponents } from './pages/register/register.component';
     SharedModule.forRoot(),
     RxReactiveFormsModule,
     StoreModule.forRoot({ footer: footerReducer }),
+    RecaptchaModule
   ],
   providers: [
     AppConfig,

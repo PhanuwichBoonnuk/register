@@ -63,11 +63,12 @@
             <label for="host-email">{{ 'form.hostEmail' | translate }}</label>
             <input type="email" id="host-email" formControlName="hostEmail" placeholder="example@example.com">
           </div>
-          
+          <app-captcha></app-captcha>
           <div class="line"></div>
           <button type="submit" class="submit-button">{{ 'form.registerButton' | translate }}</button>
         </form>
     
+        <!--! REGISTER SUCCESS -->
         <div *ngIf="!registerFlag" class="right-panel-form" style="text-align: center; padding: 50px;">
           <div>
             <img class="img-success-completed" [src]="successImagePath" alt="Register Image">
@@ -77,7 +78,6 @@
           
           <div class="line_completed_register"></div>
           <button (click)="router_register()" type="submit" class="submit-button-register-completed">{{ 'form.registerButton' | translate }}</button>
-          
           <div class="text-powered">{{ 'form.poweredBy' | translate }} <img class="img-powered" [src]="logoImagePath" alt="Logo Image"></div>
         </div>
       </div>
