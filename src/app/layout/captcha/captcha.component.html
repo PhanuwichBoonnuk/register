@@ -1,20 +1,19 @@
 <div class="captcha-container {{ config.cssClass }}">
     <div class="captcha-content">
-      <div class="captcha-box">
-        <canvas class="canvas" id="captchaCanvas" width="200" height="60"></canvas>
-        <div class="captcha-actions">
-          <button class="captcha-btn" type="button" (click)="manualReloadCaptcha()">&#x21bb;</button>
+        <div class="captcha-box">
+            <!-- แสดง SVG Captcha ที่ดึงมาจาก Backend -->
+            <div [innerHTML]="captchaSvg"></div>
+            <div class="captcha-actions">
+                <button class="captcha-btn" type="button" (click)="manualReloadCaptcha()">&#x21bb;</button>
+            </div>
         </div>
-      </div>
-      <input 
-      [maxlength]="maxLengthInput" 
-      type="text" 
-      [(ngModel)]="captch_input" 
-      name="captcha" 
-      [ngClass]="{'is-invalid': !isCaptchaValid}" 
-      placeholder="{{ 'captcha.placeholder' | translate }}" 
-      class="captcha-input">
-    
+        <input 
+            [maxlength]="maxLengthInput" 
+            type="text" 
+            [(ngModel)]="captch_input" 
+            name="captcha" 
+            [ngClass]="{'is-invalid': !isCaptchaValid}" 
+            placeholder="{{ 'captcha.placeholder' | translate }}" 
+            class="captcha-input">
     </div>
-  </div>
-  
+</div>
