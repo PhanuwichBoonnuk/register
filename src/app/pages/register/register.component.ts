@@ -57,17 +57,17 @@ export class PreRegisterComponents implements OnInit {
       email: [''], 
       phone: ['', [Validators.required, Validators.pattern(/^\d{3}-\d{3}-\d{4}$/)]], 
       company: [''],
-      idPassport: ['', [Validators.required, Validators.pattern(/^\d-\d{4}-\d{5}-\d{2}-\d$/)]], 
+      idPassport: ['', [Validators.required]],
       licensePlate: [''],
       hostEmail: ['']
     });
 
-    // *** Format ID No./passport
-    this.registerForm.get('idPassport')?.valueChanges.subscribe(value => {
-      if (value) {
-        this.registerForm.get('idPassport')?.setValue(formatIdPassport(value), { emitEvent: false });
-      }
-    });
+    // // *** Format ID No./passport
+    // this.registerForm.get('idPassport')?.valueChanges.subscribe(value => {
+    //   if (value) {
+    //     this.registerForm.get('idPassport')?.setValue(formatIdPassport(value), { emitEvent: false });
+    //   }
+    // });
 
     // *** Format Phone No.
     this.registerForm.get('phone')?.valueChanges.subscribe(value => {
