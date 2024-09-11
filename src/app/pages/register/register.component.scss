@@ -74,6 +74,8 @@ $form-sumbit-gradient-color-end: #004081 !default;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    padding-left: 10px; /* เพิ่มระยะห่างจากด้านซ้ายของ input ถึง placeholder */
+    padding-right: 10px; /* เพิ่มระยะห่างจากด้านขวาของ input ถึง placeholder */
 }
 
 .line {
